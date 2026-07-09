@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry>
+
+  <!-- Global pattern options — they end up as a data-pat-<key> attribute on
+       the <body> and are picked up by the patterns via options inheritance.
+       The simplest way to configure patterns site-wide: pure XML, no
+       JavaScript build needed.
+
+       purge="false": existing keys (e.g. "pickadate", "plone-modal" from
+       the Plone core or entries of other add-ons) are preserved.
+
+       Here we activate our Svelte component from demo 1: the
+       pat-contentbrowser looks up componentRegistryKeys.selectedItem in the
+       @plone/registry before falling back to the default component. -->
+  <record name="plone.patternoptions">
+    <value purge="false">
+      <element key="contentbrowser">{"componentRegistryKeys": {"selectedItem": "blicca.SelectedItem"}}</element>
+    </value>
+  </record>
+
+</registry>
