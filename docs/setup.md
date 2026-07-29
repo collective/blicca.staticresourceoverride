@@ -1,0 +1,74 @@
+---
+myst:
+  html_meta:
+    "description": "Set up a Plone Classic UI project and the blicca.staticresourceoverride training add-on."
+    "property=og:description": "Set up a Plone Classic UI project and the blicca.staticresourceoverride training add-on."
+    "property=og:title": "Setup"
+    "keywords": "Plone, Classic UI, Cookieplone, pnpm, installation, training setup"
+---
+
+(blicca-setup-label)=
+
+# Setup
+
+In this chapter, we create a Plone Classic UI project, and install the training add-on.
+At the end, your browser console proves that your first own bundle is loaded.
+
+## Create a Plone Classic UI project
+
+Follow the official installation documentation to {doc}`create a Classic UI project with Cookieplone <plone:install/create-project-cookieplone>`.
+In short:
+
+```shell
+uvx cookieplone classic_project
+cd <project-slug>
+make install
+make backend-start
+```
+
+Your site now runs at `http://localhost:8080` with the login `admin` and password `admin`.
+
+## Build and install the add-on
+
+Clone the training repository and build its JavaScript:
+
+```shell
+git clone https://github.com/collective/blicca.staticresourceoverride.git
+cd blicca.staticresourceoverride
+pnpm install
+pnpm run build
+```
+
+Install the add-on into the project's virtual environment.
+From the project's backend directory, run:
+
+```shell
+uv pip install -e ../blicca.staticresourceoverride
+```
+
+Alternatively, add the package to the project's dependencies.
+
+Restart the backend.
+Then install {guilabel}`Blicca Static Resource Override (Training)` in the add-ons control panel.
+
+## The pnpm caveats
+
+The package manager is pnpm, the same as Mockup itself uses.
+The file `pnpm-workspace.yaml` mirrors the known caveats of [plone/mockup](https://github.com/plone/mockup):
+
+-   `shamefullyHoist: true`, because webpack module resolution needs a flat `node_modules` directory.
+-   `overrides` that remove the git subdependencies `slick-carousel`, `slides`, and `select2`, because pnpm blocks exotic subdependencies.
+    Only patterns that this add-on does not import need them.
+-   An `allowBuilds` allowlist, because pnpm 10 and later block dependency build scripts by default.
+
+## Success check
+
+Open any page of your site, and open the browser console.
+You should see the following message:
+
+```console
+Patternslib Module Federation: Loaded and initialized bundle "__patternslib_mf__bliccastaticresourceoverride".
+```
+
+The Plone bundle, the host, has found and initialized your add-on bundle, the remote.
+Now we can start overriding things.
