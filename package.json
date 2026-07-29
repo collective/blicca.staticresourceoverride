@@ -1,0 +1,36 @@
+{
+    "name": "blicca-staticresourceoverride",
+    "version": "1.0.0",
+    "description": "Blicca (Plone Classic UI) pattern and Svelte component overrides — training add-on",
+    "license": "GPL-2.0-only",
+    "engines": {
+        "node": ">=18"
+    },
+    "dependenciesComments": {
+        "@patternslib/patternslib": "Has to match the Patternslib version of the Mockup release in plone.staticresources (module federation shared dependencies!).",
+        "@plone/mockup": "Has to match the Mockup version shipped with the deployed Plone (plone.staticresources).",
+        "@plone/registry": "Component registry — use the same major/minor as Mockup so the instance is shared via module federation."
+    },
+    "dependencies": {
+        "@patternslib/patternslib": "^9.10.6",
+        "@plone/mockup": "^5.6.7",
+        "@plone/registry": "^2.7.2",
+        "svelte": "^5.56.3"
+    },
+    "devDependencies": {
+        "@patternslib/dev": "^4.0.0",
+        "svelte-loader": "^3.2.4"
+    },
+    "scripts": {
+        "build": "NODE_ENV=production webpack --config webpack.config.js",
+        "start": "NODE_ENV=development webpack serve --config webpack.config.js",
+        "watch": "NODE_ENV=development webpack --config webpack.config.js --watch"
+    },
+    "keywords": [
+        "patternslib",
+        "mockup",
+        "blicca",
+        "plone",
+        "svelte"
+    ]
+}
