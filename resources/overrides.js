@@ -20,6 +20,15 @@ import registry from "@patternslib/patternslib/src/core/registry";
 import "./pat-blicca/blicca";
 
 // ---------------------------------------------------------------------------
+// Step 3 — Replace a core pattern entirely.
+//
+// Works in tandem with the pattern blacklist
+// (static/pattern-blacklist.js), which prevents the original from being
+// registered. Our replacement registers itself under its own name, but with
+// the same trigger.
+import "./markspeciallinks/markspeciallinks";
+
+// ---------------------------------------------------------------------------
 // The registry is usually already initialized by the Plone bundle — in that
 // case this call is a no-op (newly registered patterns trigger a targeted
 // re-scan anyway). But it does no harm and makes the bundle work standalone
