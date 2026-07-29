@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry>
+
+  <!-- Global pattern options — they end up as a data-pat-<key> attribute on
+       the <body> and are picked up by the patterns via options inheritance.
+       The simplest way to configure patterns site-wide: pure XML, no
+       JavaScript build needed.
+
+       purge="false": existing keys (e.g. "pickadate", "plone-modal" from
+       the Plone core or entries of other add-ons) are preserved.
+
+       Note: an entry here overrides the body attribute rendered by Plone's
+       IPatternsSettings adapters for the same pattern (e.g. the link
+       settings from the control panel). Powerful, but be deliberate. -->
+  <record name="plone.patternoptions">
+    <value purge="false">
+      <!-- Step 1 demo: make external links open in a new window — purely
+           declarative, no JavaScript involved. -->
+      <element key="markspeciallinks">{"external_links_open_new_window": "true"}</element>
+    </value>
+  </record>
+
+</registry>

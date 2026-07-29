@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+*.egg-info/
+__pycache__/
+
+# Webpack build artifacts (generated with `npm run build`)
+src/blicca/staticresourceoverride/static/bundles/*
+!src/blicca/staticresourceoverride/static/bundles/.gitkeep
