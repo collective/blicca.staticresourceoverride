@@ -28,27 +28,36 @@ make backend-start
 
 Your site now runs at `http://localhost:8080` with the login `admin` and password `admin`.
 
-## Build and install the add-on
+## Add the add-on as a source checkout
 
-Clone the training repository and build its JavaScript:
+Cookieplone projects manage source checkouts with [mxdev](https://github.com/mxstack/mxdev).
+Add the training add-on to the {file}`mx.ini` of your project:
+
+```ini
+[blicca.staticresourceoverride]
+url = https://github.com/collective/blicca.staticresourceoverride.git
+branch = main
+```
+
+Then run the installation again:
 
 ```shell
-git clone https://github.com/collective/blicca.staticresourceoverride.git
-cd blicca.staticresourceoverride
+make install
+```
+
+mxdev clones the repository into {file}`sources/blicca.staticresourceoverride`, and installs it as an editable package.
+
+## Build the JavaScript
+
+Build the add-on's JavaScript inside the source checkout:
+
+```shell
+cd sources/blicca.staticresourceoverride
 pnpm install
 pnpm run build
 ```
 
-Install the add-on into the project's virtual environment.
-From the project's backend directory, run:
-
-```shell
-uv pip install -e ../blicca.staticresourceoverride
-```
-
-Alternatively, add the package to the project's dependencies.
-
-Restart the backend.
+Start the backend again with `make backend-start`.
 Then install {guilabel}`Blicca Static Resource Override (Training)` in the add-ons control panel.
 
 ## The pnpm caveats
