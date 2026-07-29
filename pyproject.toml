@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blicca.staticresourceoverride"
+version = "1.0.0.dev0"
+description = "Training add-on: overriding patterns and Svelte components of Plone Blicca (formerly known as Classic UI)"
+readme = "README.md"
+license = { text = "GPL version 2" }
+requires-python = ">=3.10"
+authors = [{ name = "Kombinat", email = "office@kombinat.at" }]
+keywords = ["Plone", "Blicca", "Mockup", "Patternslib", "Svelte", "Training"]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Plone",
+    "Framework :: Plone :: 6.2",
+    "Framework :: Plone :: Addon",
+    "Programming Language :: Python",
+]
+dependencies = [
+    "Products.CMFPlone",
+]
+
+[project.entry-points."z3c.autoinclude.plugin"]
+target = "plone"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
