@@ -10,6 +10,7 @@
  * profiles/default/registry/patternoptions.xml.)
  */
 import registry from "@patternslib/patternslib/src/core/registry";
+import plone_registry from "@plone/registry";
 
 // ---------------------------------------------------------------------------
 // Step 2 — Register your own, new pattern.
@@ -27,6 +28,24 @@ import "./pat-blicca/blicca";
 // registered. Our replacement registers itself under its own name, but with
 // the same trigger.
 import "./markspeciallinks/markspeciallinks";
+
+// ---------------------------------------------------------------------------
+// Step 4 — Override a Svelte component.
+//
+// The pat-contentbrowser pulls its "SelectedItem" component from the
+// @plone/registry. We register our own variant under a custom key. It gets
+// activated via the pattern option ``componentRegistryKeys.selectedItem`` —
+// set globally via ``plone.patternoptions``
+// (see profiles/default/registry/patternoptions.xml).
+import BliccaSelectedItem from "./contentbrowser/SelectedItem.svelte";
+import { bridge } from "./contentbrowser/mount-bridge";
+
+plone_registry.registerComponent({
+    name: "blicca.SelectedItem",
+    // The bridge is needed because the Plone bundle does not share its
+    // Svelte runtime — see mount-bridge.js for the full story.
+    component: bridge(BliccaSelectedItem),
+});
 
 // ---------------------------------------------------------------------------
 // The registry is usually already initialized by the Plone bundle — in that
