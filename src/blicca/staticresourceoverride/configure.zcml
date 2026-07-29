@@ -1,0 +1,41 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="blicca.staticresourceoverride"
+    >
+
+  <include package="plone.resource" file="meta.zcml" />
+  <include package="plone.resource" />
+
+  <!-- Static resources: available at
+       ++plone++blicca.staticresourceoverride/...  -->
+  <plone:static
+      type="plone"
+      name="blicca.staticresourceoverride"
+      directory="static"
+      />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Blicca Static Resource Override (Training)"
+      description="Registers bundles with pattern and Svelte overrides for Blicca (Classic UI)."
+      directory="profiles/default"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="Blicca Static Resource Override (uninstall)"
+      description="Removes the Blicca overrides."
+      directory="profiles/uninstall"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_uninstall"
+      />
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="blicca.staticresourceoverride-hiddenprofiles"
+      />
+
+</configure>
