@@ -103,25 +103,23 @@ Three building blocks:
 1. Your own component with the **same props interface** as the original:
    [`resources/contentbrowser/SelectedItem.svelte`](resources/contentbrowser/SelectedItem.svelte)
 2. Registration in the shared component registry
-   ([`resources/overrides.js`](resources/overrides.js)) — wrapped in a
-   small **runtime bridge**
-   ([`resources/contentbrowser/mount-bridge.js`](resources/contentbrowser/mount-bridge.js)):
+   ([`resources/overrides.js`](resources/overrides.js)):
 
    ```js
    import plone_registry from "@plone/registry";
-   import { bridge } from "./contentbrowser/mount-bridge";
    plone_registry.registerComponent({
        name: "blicca.SelectedItem",
-       component: bridge(BliccaSelectedItem),
+       component: BliccaSelectedItem,
    });
    ```
 
-   The bridge is needed because the Plone bundle does not share its Svelte
-   runtime via module federation: a component compiled in the add-on
-   carries its own runtime copy, and the host's `mount()` cannot execute a
-   component from a foreign runtime (it fails with `Cannot read properties
-   of null (reading 'nodes')`). The bridge mounts the component with the
-   add-on's own runtime into the DOM slot provided by the host.
+   This works because host and add-on share **one Svelte runtime** via
+   module federation — `svelte` and `svelte/` singleton shares on both
+   sides, see [`webpack.config.js`](webpack.config.js). Svelte keeps its
+   reactivity state in module-level variables, so a component compiled
+   against a second runtime copy cannot be mounted by the host. The Plone
+   bundle shares its runtime since Mockup 5.7; on older bundles this
+   override fails with `Cannot read properties of null (reading 'nodes')`.
 
 3. Activation via the pattern option `componentRegistryKeys.selectedItem` —
    site-wide and purely declarative through the registry record
@@ -230,8 +228,8 @@ Override (Training)"** in the add-ons control panel (or via `portal_setup`).
 - The Svelte component registration is *lazy*: the content browser falls
   back to the default component if the key is not (yet) registered — a typo
   in the registry key therefore only shows up as "nothing happens".
-- **Foreign Svelte runtime**: registering a compiled `.svelte` component
-  directly renders an empty slot and throws `Cannot read properties of
-  null (reading 'nodes')` — the Plone bundle does not share its Svelte
-  runtime. Always wrap add-on components in the
-  [mount bridge](resources/contentbrowser/mount-bridge.js).
+- **Two Svelte runtimes**: if the selection list renders an empty slot and
+  the console shows `Cannot read properties of null (reading 'nodes')`,
+  host and add-on don't share the Svelte runtime — either the Plone bundle
+  is older than Mockup 5.7, or the `svelte`/`svelte/` shares are missing
+  in your webpack config.

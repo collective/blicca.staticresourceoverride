@@ -61,6 +61,22 @@ module.exports = () => {
                 ...package_json_mockup.dependencies,
                 ...package_json.dependencies,
             },
+            shared: {
+                // Mirror the host's Svelte shares (mockup webpack.config.js):
+                // Svelte keeps its reactivity state in module-level
+                // variables, so our compiled components must run on the
+                // very same runtime instance as the Plone bundle. The
+                // prefix share ("svelte/") covers the subpath imports of
+                // compiled components, such as "svelte/internal/client".
+                svelte: {
+                    singleton: true,
+                    requiredVersion: package_json.dependencies["svelte"],
+                },
+                "svelte/": {
+                    singleton: true,
+                    requiredVersion: package_json.dependencies["svelte"],
+                },
+            },
         })
     );
 

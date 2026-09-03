@@ -17,8 +17,8 @@ importers:
         specifier: ^9.10.6
         version: 9.10.6
       '@plone/mockup':
-        specifier: ^5.6.7
-        version: 5.6.8(@popperjs/core@2.11.8)(posthtml@0.16.7)(react@19.2.8)
+        specifier: github:plone/mockup#320cb46f18c356677c9f1e966682fb19796bc1c2
+        version: https://codeload.github.com/plone/mockup/tar.gz/320cb46f18c356677c9f1e966682fb19796bc1c2(@popperjs/core@2.11.8)(posthtml@0.16.7)(react@19.2.8)
       '@plone/registry':
         specifier: ^2.7.2
         version: 2.7.3(react@19.2.8)
@@ -796,6 +796,18 @@ packages:
     resolution: {integrity: sha512-+CNAzxglkrpNf/kKywqQfk74QjtceuOE7Qm+AF8miRvPF/wmmK5+OJOgVh3AVTT3RP2mH3+FOaxlE5v72owk0A==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
+  '@formatjs/bigdecimal@0.2.7':
+    resolution: {integrity: sha512-B4+XY/e4u5v261r3a37Kq2ax91gPZSKGyVpx8X5dygAggLlUz+6MeBpmAhaBFGB8WQ4JB1qD+QtKHk9aJkEb9Q==}
+
+  '@formatjs/fast-memoize@3.1.7':
+    resolution: {integrity: sha512-zXfhLpvA6T7+efdt9JLbBwZ00tT7NsBMDVnDu8rpHeNNv8KfRZAMo2gkG0k9lK/Nzc//3kJ9pImsfuJxk3KhUA==}
+
+  '@formatjs/intl-datetimeformat@7.6.1':
+    resolution: {integrity: sha512-CsjT8QldSoKI2VZ2cNRkrWgPsR2tdmCH2WdFm8SaqbU2o1A08SGDVrfBPNet+zqv7otwcL5S6GSHLr+LoRBNxw==}
+
+  '@formatjs/intl-localematcher@0.8.13':
+    resolution: {integrity: sha512-kHEAFOkeJSPNi7c5PaKaRjxcBrJwzzt81ifUu+8uve1EDW/VJl83KsxmqgqNZLzcFEhSliZGvx3+pk/RH0IOmg==}
+
   '@fullcalendar/adaptive@5.11.5':
     resolution: {integrity: sha512-yGXS7u1EOKyNdNuwepDEgh2e52jaxYu9D8A4ptdKEPtBMqdStShMp/4NNN8QEJJr50a5qdJTZRA8q1HAdq2USQ==}
 
@@ -1454,8 +1466,9 @@ packages:
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  '@plone/mockup@5.6.8':
-    resolution: {integrity: sha512-nZcn4vGC7liJiF5IpaK3I8Tjhv3Gzg40ATO+OuquyIT6hI2e3oTjbUdhCOOlklcgZUIgOavyXEpdunk/hbGX0A==}
+  '@plone/mockup@https://codeload.github.com/plone/mockup/tar.gz/320cb46f18c356677c9f1e966682fb19796bc1c2':
+    resolution: {gitHosted: true, integrity: sha512-mqR1aOOp1mPLA6Pzvk+k4V1GoJTIw3KJTLsNVEieQO66L9kYG8yH1nkLaZooKIOFkXLtj9LfSYSDo5mD9ehJBw==, tarball: https://codeload.github.com/plone/mockup/tar.gz/320cb46f18c356677c9f1e966682fb19796bc1c2}
+    version: 5.7.0-alpha.0
     engines: {node: '>=22'}
 
   '@plone/registry@2.7.3':
@@ -6364,6 +6377,19 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
+  '@formatjs/bigdecimal@0.2.7': {}
+
+  '@formatjs/fast-memoize@3.1.7': {}
+
+  '@formatjs/intl-datetimeformat@7.6.1':
+    dependencies:
+      '@formatjs/bigdecimal': 0.2.7
+      '@formatjs/intl-localematcher': 0.8.13
+
+  '@formatjs/intl-localematcher@0.8.13':
+    dependencies:
+      '@formatjs/fast-memoize': 3.1.7
+
   '@fullcalendar/adaptive@5.11.5':
     dependencies:
       '@fullcalendar/common': 5.11.5
@@ -7291,9 +7317,10 @@ snapshots:
 
   '@pkgr/core@0.3.6': {}
 
-  '@plone/mockup@5.6.8(@popperjs/core@2.11.8)(posthtml@0.16.7)(react@19.2.8)':
+  '@plone/mockup@https://codeload.github.com/plone/mockup/tar.gz/320cb46f18c356677c9f1e966682fb19796bc1c2(@popperjs/core@2.11.8)(posthtml@0.16.7)(react@19.2.8)':
     dependencies:
       '@11ty/eleventy-upgrade-help': 3.0.2(posthtml@0.16.7)
+      '@formatjs/intl-datetimeformat': 7.6.1
       '@patternslib/pat-code-editor': 4.0.1
       '@patternslib/patternslib': 9.10.6
       '@plone/registry': 2.7.3(react@19.2.8)
@@ -7323,11 +7350,13 @@ snapshots:
       jquery.browser: 0.1.0
       js-cookie: 3.0.8
       sortablejs: 1.15.7
+      svelte: 5.56.8
       tinymce: 8.6.0
       tinymce-i18n: 26.5.18
       underscore: 1.13.8
     transitivePeerDependencies:
       - '@popperjs/core'
+      - '@typescript-eslint/types'
       - posthtml
       - react
       - react-dom

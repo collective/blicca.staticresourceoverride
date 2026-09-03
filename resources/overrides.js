@@ -38,13 +38,10 @@ import "./markspeciallinks/markspeciallinks";
 // set globally via ``plone.patternoptions``
 // (see profiles/default/registry/patternoptions.xml).
 import BliccaSelectedItem from "./contentbrowser/SelectedItem.svelte";
-import { bridge } from "./contentbrowser/mount-bridge";
 
 plone_registry.registerComponent({
     name: "blicca.SelectedItem",
-    // The bridge is needed because the Plone bundle does not share its
-    // Svelte runtime — see mount-bridge.js for the full story.
-    component: bridge(BliccaSelectedItem),
+    component: BliccaSelectedItem,
 });
 
 // ---------------------------------------------------------------------------

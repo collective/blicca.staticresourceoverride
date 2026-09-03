@@ -243,14 +243,14 @@ field, select items, watch your component render.
   falls back to the default component — check for typos first.
 - Svelte knowledge required: template syntax and `$props()` — that's it for
   this exercise.
-- The **runtime bridge** (`mount-bridge.js`): the Plone bundle does not
-  share its Svelte runtime via module federation, so a directly registered
-  add-on component crashes on mount (`Cannot read properties of null
-  (reading 'nodes')` — great live-debugging demo if time permits). The
-  bridge mounts the component with the add-on's own runtime into the slot
-  the host provides. Worth an upstream issue/PR against plone/mockup:
-  sharing `svelte` (including its `internal` subpaths) would make the
-  bridge unnecessary.
+- **One Svelte runtime**: host and add-on share the runtime via module
+  federation (`svelte` + `svelte/` singleton shares in both webpack
+  configs). Svelte keeps its reactivity state in module-level variables,
+  so two runtime copies can't cooperate. Live-debugging demo if time
+  permits: drop the shares from `webpack.config.js`, rebuild, and watch
+  the selection list render an empty slot with `Cannot read properties of
+  null (reading 'nodes')`. Requires a Plone bundle built from Mockup 5.7
+  or later.
 
 **Checkpoint:** the content browser selection renders with the custom
 component.

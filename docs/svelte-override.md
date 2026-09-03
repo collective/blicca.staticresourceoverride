@@ -1,8 +1,8 @@
 ---
 myst:
   html_meta:
-    "description": "Override a Svelte component of the Blicca content browser via the shared @plone/registry, including the Svelte runtime bridge."
-    "property=og:description": "Override a Svelte component of the Blicca content browser via the shared @plone/registry, including the Svelte runtime bridge."
+    "description": "Override a Svelte component of the Blicca content browser via the shared @plone/registry and one shared Svelte runtime."
+    "property=og:description": "Override a Svelte component of the Blicca content browser via the shared @plone/registry and one shared Svelte runtime."
     "property=og:title": "Overriding a Svelte component"
     "keywords": "Plone, Blicca, Svelte, contentbrowser, plone registry, componentRegistryKeys, module federation"
 ---
@@ -36,53 +36,46 @@ The component receives `item`, the selected object with its catalog metadata, an
 Everything else, such as markup, badges, and styling, is yours.
 The same technique applies to other Svelte-based parts of the stack, such as the file manager.
 
-## Block 2: registration, with a runtime bridge
+## Block 2: registration
 
 In {file}`resources/overrides.js`, we register the component under our own key:
 
 ```js
 import plone_registry from "@plone/registry";
 import BliccaSelectedItem from "./contentbrowser/SelectedItem.svelte";
-import { bridge } from "./contentbrowser/mount-bridge";
 
 plone_registry.registerComponent({
     name: "blicca.SelectedItem",
-    component: bridge(BliccaSelectedItem),
+    component: BliccaSelectedItem,
 });
 ```
 
-Why the bridge?
-The Plone bundle does not share its Svelte runtime through module federation.
-A component compiled in the add-on carries its own copy of the runtime.
-The host's `mount()` cannot execute a component from a foreign runtime, and fails with the following error:
-
-```console
-TypeError: Cannot read properties of null (reading 'nodes')
-```
-
-The bridge in {file}`resources/contentbrowser/mount-bridge.js` wraps the component in a plain function with the Svelte component calling convention.
-The host mounts the wrapper without touching any Svelte internals, and the wrapper mounts the real component with the add-on's own runtime into the same DOM slot:
+One detail makes this work.
+The host and the add-on share a single Svelte runtime through module federation.
+Svelte keeps its reactivity state in module-level variables, so a component compiled against a second copy of the runtime cannot be mounted by the host.
+Both webpack configurations therefore declare the same singleton shares: `svelte` for the package itself, and the prefix `svelte/` for the subpath imports of compiled components, such as `svelte/internal/client`.
+This is the relevant part of {file}`webpack.config.js`:
 
 ```js
-import { mount } from "svelte";
-
-export function bridge(Component) {
-    return function (anchor, props) {
-        mount(Component, {
-            target: anchor.parentNode,
-            anchor: anchor,
-            props: props,
-        });
-        return {};
-    };
-}
+shared: {
+    svelte: {
+        singleton: true,
+        requiredVersion: package_json.dependencies["svelte"],
+    },
+    "svelte/": {
+        singleton: true,
+        requiredVersion: package_json.dependencies["svelte"],
+    },
+},
 ```
 
-```{note}
-This is a great live debugging story.
-Register the component once without the bridge, and watch the selection list render an empty slot with the error above.
-Once Mockup shares its Svelte runtime through module federation, the bridge becomes unnecessary.
+```{important}
+The Plone bundle shares its Svelte runtime since Mockup 5.7.
+With an older bundle, the selection list renders an empty slot, and the console shows `TypeError: Cannot read properties of null (reading 'nodes')`.
 ```
+
+This makes a great live debugging story, if time permits.
+Remove the two shares from {file}`webpack.config.js`, rebuild, and watch the error appear.
 
 ## Block 3: activation
 

@@ -54,9 +54,11 @@ Missing trigger class
 Missing `purge="false"`
 :   Without it, your `plone.patternoptions` import overwrites the options of the Plone core and of other add-ons.
 
-Foreign Svelte runtime
-:   Registering a compiled Svelte component directly renders an empty slot, and throws `Cannot read properties of null (reading 'nodes')`.
-    Always wrap add-on components in the mount bridge from {ref}`blicca-svelte-override-label`.
+Two Svelte runtimes
+:   The selection list renders an empty slot, and the console shows `Cannot read properties of null (reading 'nodes')`.
+    The host and the add-on don't share the Svelte runtime.
+    Either the Plone bundle is older than Mockup 5.7, or the `svelte` and `svelte/` shares are missing in your webpack configuration.
+    See {ref}`blicca-svelte-override-label`.
 
 Lazy component registration
 :   With a typo in the registry key, the content browser silently falls back to the default component.
