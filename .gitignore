@@ -3,6 +3,7 @@ dist/
 build/
 *.egg-info/
 __pycache__/
+docs/_build/
 
 # Webpack build artifacts (generated with `npm run build`)
 src/blicca/staticresourceoverride/static/bundles/*
