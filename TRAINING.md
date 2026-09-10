@@ -30,7 +30,7 @@ Participants need:
 - Basic Plone knowledge (installing add-ons, GenericSetup profiles).
 - JavaScript basics: ES6+ syntax, module imports. No Svelte experience
   required.
-- A laptop with: Python ≥ 3.10, Node ≥ 18, **pnpm** (`corepack enable` is
+- A laptop with: Python ≥ 3.10, Node ≥ 22, **pnpm** (`corepack enable` is
   all it takes — the version is pinned in `package.json`), git, a code
   editor.
 

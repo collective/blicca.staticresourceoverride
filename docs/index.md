@@ -40,7 +40,7 @@ No Svelte experience is required.
 Bring a laptop with the following software installed:
 
 -   Python 3.10 or later
--   Node.js 18 or later
+-   Node.js 22 or later
 -   pnpm, where `corepack enable` is all it takes, as the version is pinned in the project's `package.json`
 -   Git
 -   A code editor
