@@ -249,7 +249,7 @@ field, select items, watch your component render.
   so two runtime copies can't cooperate. Live-debugging demo if time
   permits: drop the shares from `webpack.config.js`, rebuild, and watch
   the selection list render an empty slot with `Cannot read properties of
-  null (reading 'nodes')`. Requires a Plone bundle built from Mockup 5.7
+  null (reading 'nodes')`. Requires a Plone bundle built from Mockup 5.6.9
   or later.
 
 **Checkpoint:** the content browser selection renders with the custom

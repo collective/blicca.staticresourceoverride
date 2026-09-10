@@ -70,7 +70,7 @@ shared: {
 ```
 
 ```{important}
-The Plone bundle shares its Svelte runtime since Mockup 5.7.
+The Plone bundle shares its Svelte runtime since Mockup 5.6.9.
 With an older bundle, the selection list renders an empty slot, and the console shows `TypeError: Cannot read properties of null (reading 'nodes')`.
 ```
 

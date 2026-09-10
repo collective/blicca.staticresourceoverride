@@ -118,7 +118,7 @@ Three building blocks:
    sides, see [`webpack.config.js`](webpack.config.js). Svelte keeps its
    reactivity state in module-level variables, so a component compiled
    against a second runtime copy cannot be mounted by the host. The Plone
-   bundle shares its runtime since Mockup 5.7; on older bundles this
+   bundle shares its runtime since Mockup 5.6.9; on older bundles this
    override fails with `Cannot read properties of null (reading 'nodes')`.
 
 3. Activation via the pattern option `componentRegistryKeys.selectedItem` —
@@ -231,5 +231,5 @@ Override (Training)"** in the add-ons control panel (or via `portal_setup`).
 - **Two Svelte runtimes**: if the selection list renders an empty slot and
   the console shows `Cannot read properties of null (reading 'nodes')`,
   host and add-on don't share the Svelte runtime — either the Plone bundle
-  is older than Mockup 5.7, or the `svelte`/`svelte/` shares are missing
+  is older than Mockup 5.6.9, or the `svelte`/`svelte/` shares are missing
   in your webpack config.

@@ -57,7 +57,7 @@ Missing `purge="false"`
 Two Svelte runtimes
 :   The selection list renders an empty slot, and the console shows `Cannot read properties of null (reading 'nodes')`.
     The host and the add-on don't share the Svelte runtime.
-    Either the Plone bundle is older than Mockup 5.7, or the `svelte` and `svelte/` shares are missing in your webpack configuration.
+    Either the Plone bundle is older than Mockup 5.6.9, or the `svelte` and `svelte/` shares are missing in your webpack configuration.
     See {ref}`blicca-svelte-override-label`.
 
 Lazy component registration
