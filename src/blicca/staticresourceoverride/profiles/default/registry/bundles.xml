@@ -3,9 +3,11 @@
 
   <!-- 1. Preload bundle: a simple, unbuilt JS file.
        Sets the pattern blacklist before Mockup registers its patterns.
-       No "depends" — it is rendered BEFORE the Plone bundle and runs
-       synchronously, while Mockup only registers its patterns in an async
-       chunk. -->
+       No "depends" — it is rendered BEFORE the Plone bundle (bundles
+       without dependencies render in alphabetical order of their record
+       names) and runs synchronously, while Mockup only registers its
+       patterns in an async chunk. Note: depends="*" would mean "after
+       ALL other bundles" — the opposite of what we want. -->
   <records
       interface="plone.base.interfaces.IBundleRegistry"
       prefix="plone.bundles/blicca-preload"

@@ -48,6 +48,12 @@ The profile registers it as its own bundle, without a `depends` value:
 It renders before the Plone bundle and runs synchronously, while Mockup registers its patterns in an async chunk.
 The original pattern therefore never gets registered.
 
+Two things make this ordering reliable.
+First, the `depends` field only knows "after": an empty value means "as early as possible", and `*` means "after all other bundles", so `depends="*"` would be exactly the wrong choice here.
+Bundles without dependencies render in the alphabetical order of their registry record names, and `plone.bundles/blicca-preload` sorts before `plone.bundles/plone`.
+Second, even a synchronous script that renders after the Plone bundle still runs before Mockup's async pattern chunk.
+The blacklist takes effect at registration time, so the position among the synchronous scripts does not matter.
+
 ```{note}
 Bundles are just files.
 This one needs no build at all.
