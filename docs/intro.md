@@ -42,6 +42,12 @@ Newer patterns, such as `pat-contentbrowser`, are Svelte apps.
 They pull some of their sub-components from the `@plone/registry` component registry.
 That is exactly where add-ons can hook in their own components, as we do in {ref}`blicca-svelte-override-label`.
 
+Why Svelte, and not React?
+Svelte compiles components to small, plain JavaScript without a virtual DOM, so the runtime footprint stays small.
+That is a good fit for a server-rendered UI that is progressively enhanced with JavaScript.
+Components read like HTML, CSS, and JavaScript, which keeps the learning curve flat for integrators.
+And Classic UI deliberately stays free of React dependencies: it does not need Volto's stack to render a widget.
+
 ## See it live
 
 Open your browser's developer tools on any Plone page, and observe the stack at work:
