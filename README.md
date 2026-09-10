@@ -50,7 +50,7 @@ deliberate.
 One catch, worth understanding: options alone don't run a pattern — the
 **trigger class** has to be present. The `pat-markspeciallinks` class - a Pattern trigger class - on
 the `<body>` is only rendered when one of Plone's link settings is enabled.
-This tutorial's profile profile sets `plone.mark_special_links` to enable the Pattern
+This tutorial's profile sets `plone.mark_special_links` to enable the Pattern
 ([`linksettings.xml`](src/blicca/staticresourceoverride/profiles/default/registry/linksettings.xml));
 without it neither the original pattern nor our step 3 replacement would
 ever run.
