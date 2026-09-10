@@ -83,5 +83,4 @@ own-pattern
 replace-pattern
 svelte-override
 production
-trainer-notes
 ```
