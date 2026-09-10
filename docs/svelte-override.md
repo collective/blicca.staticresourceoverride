@@ -88,6 +88,11 @@ We set it site-wide with the mechanism from {ref}`blicca-pattern-options-label`,
 
 Alternatively, set `data-pat-contentbrowser` directly on a single widget, or write an `IPatternsSettings` adapter for conditional activation.
 
+Why not simply overwrite the default key `pat-contentbrowser.SelectedItem`?
+The pattern registers the default component in its `init()`, on every widget initialization, and the component registry overwrites silently.
+Your registration from the add-on bundle would be reset by the next content browser that initializes.
+A custom key is the only reliable hook, as long as Mockup registers the default unconditionally.
+
 ## Exercise
 
 Restyle the component in {file}`resources/contentbrowser/SelectedItem.svelte`.
