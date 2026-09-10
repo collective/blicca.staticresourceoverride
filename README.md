@@ -20,7 +20,7 @@ Once installed in Plone, all customizations are active — without touching
   `.pat-tinymce`). Rule of thumb: **first registration wins** — whoever
   registers first, wins.
 - The Plone bundle is a **module federation host**: add-on bundles
-  ("remotes") are initialized automatically on *document-ready* and **share
+  ("remotes") are initialized automatically on _document-ready_ and **share
   the core modules** with the host (Patternslib registry, `@plone/registry`,
   jQuery, Bootstrap, Svelte runtime …). This way add-on and core talk to the
   same registry instances.
@@ -108,8 +108,8 @@ Three building blocks:
    ```js
    import plone_registry from "@plone/registry";
    plone_registry.registerComponent({
-       name: "blicca.SelectedItem",
-       component: BliccaSelectedItem,
+     name: "blicca.SelectedItem",
+     component: BliccaSelectedItem,
    });
    ```
 
@@ -159,7 +159,7 @@ The package manager is **pnpm** (like mockup itself; version pinned via the
 ```bash
 cd src/blicca.staticresourceoverride
 pnpm install
-pnpm run build    # → src/blicca/staticresourceoverride/static/bundles/
+pnpm run build # → src/blicca/staticresourceoverride/static/bundles/
 ```
 
 For development: `pnpm run watch` (rebuilds on change; in Plone a browser
@@ -197,7 +197,7 @@ branch = main
 In any other setup, a plain editable install works as well:
 
 ```bash
-pip install -e blicca.staticresourceoverride   # into your project's virtualenv
+pip install -e blicca.staticresourceoverride # into your project's virtualenv
 ```
 
 Then restart the instance and install the add-on **"Blicca Static Resource
@@ -212,7 +212,7 @@ Override (Training)"** in the add-ons control panel (or via `portal_setup`).
    the selection renders with the Blicca `SelectedItem` component
    (technique 4, activated via technique 1).
 5. Browser console: `Patternslib Module Federation: Loaded and initialized
-   bundle "__patternslib_mf__bliccastaticresourceoverride"` confirms that
+bundle "__patternslib_mf__bliccastaticresourceoverride"` confirms that
    the host has loaded the remote.
 
 ## Known pitfalls
@@ -225,7 +225,7 @@ Override (Training)"** in the add-ons control panel (or via `portal_setup`).
   warnings.
 - Omitting **`purge="false"`** on `plone.patternoptions` overwrites the
   options of the Plone core and other add-ons.
-- The Svelte component registration is *lazy*: the content browser falls
+- The Svelte component registration is _lazy_: the content browser falls
   back to the default component if the key is not (yet) registered — a typo
   in the registry key therefore only shows up as "nothing happens".
 - **Two Svelte runtimes**: if the selection list renders an empty slot and

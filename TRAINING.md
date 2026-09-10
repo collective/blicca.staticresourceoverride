@@ -93,9 +93,9 @@ is a **working state** of the add-on after the corresponding block:
 | Tag      | State after…                                                |
 | -------- | ----------------------------------------------------------- |
 | `step-1` | Pattern options via registry only — no JavaScript build yet |
-| `step-2` | Own pattern `pat-blicca` + webpack/module federation setup   |
-| `step-3` | Core pattern `markspeciallinks` replaced via blacklist       |
-| `step-4` | Svelte `SelectedItem` override — identical to `main`         |
+| `step-2` | Own pattern `pat-blicca` + webpack/module federation setup  |
+| `step-3` | Core pattern `markspeciallinks` replaced via blacklist      |
+| `step-4` | Svelte `SelectedItem` override — identical to `main`        |
 
 If you fall behind, jump to the current step and continue from there:
 
@@ -109,16 +109,16 @@ steps, so new registry records are applied.
 
 ## Schedule (240 minutes)
 
-| Time      | Block                                        | Minutes |
-| --------- | -------------------------------------------- | ------- |
-| 0:00–0:20 | Big picture: the Blicca JS stack             | 20      |
-| 0:20–0:50 | Block 0 — Setup                              | 30      |
-| 0:50–1:20 | Block 1 — Overrides without JavaScript       | 30      |
-| 1:20–1:50 | Block 2 — Your own pattern                   | 30      |
-| 1:50–2:05 | ☕ Break                                      | 15      |
-| 2:05–2:50 | Block 3 — Replacing a core pattern           | 45      |
-| 2:50–3:40 | Block 4 — Overriding a Svelte component      | 50      |
-| 3:40–4:00 | Production notes, Q&A, where to go next      | 20      |
+| Time      | Block                                   | Minutes |
+| --------- | --------------------------------------- | ------- |
+| 0:00–0:20 | Big picture: the Blicca JS stack        | 20      |
+| 0:20–0:50 | Block 0 — Setup                         | 30      |
+| 0:50–1:20 | Block 1 — Overrides without JavaScript  | 30      |
+| 1:20–1:50 | Block 2 — Your own pattern              | 30      |
+| 1:50–2:05 | ☕ Break                                | 15      |
+| 2:05–2:50 | Block 3 — Replacing a core pattern      | 45      |
+| 2:50–3:40 | Block 4 — Overriding a Svelte component | 50      |
+| 3:40–4:00 | Production notes, Q&A, where to go next | 20      |
 
 ---
 
@@ -213,7 +213,7 @@ Bootstrap Icons), or additionally set `rel="noopener noreferrer"`.
 
 **Teaching points:**
 
-- The blacklist blocks *any* registration under that name — including
+- The blacklist blocks _any_ registration under that name — including
   yours. Hence the own name + original trigger combo.
 - The preload bundle needs no build at all — bundles are just files.
 
@@ -239,7 +239,7 @@ field, select items, watch your component render.
 
 **Teaching points:**
 
-- The registration is *lazy*: on a wrong key the content browser silently
+- The registration is _lazy_: on a wrong key the content browser silently
   falls back to the default component — check for typos first.
 - Svelte knowledge required: template syntax and `$props()` — that's it for
   this exercise.
@@ -249,7 +249,7 @@ field, select items, watch your component render.
   so two runtime copies can't cooperate. Live-debugging demo if time
   permits: drop the shares from `webpack.config.js`, rebuild, and watch
   the selection list render an empty slot with `Cannot read properties of
-  null (reading 'nodes')`. Requires a Plone bundle built from Mockup 5.7
+null (reading 'nodes')`. Requires a Plone bundle built from Mockup 5.7
   or later.
 
 **Checkpoint:** the content browser selection renders with the custom
