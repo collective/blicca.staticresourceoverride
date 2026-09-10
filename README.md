@@ -1,7 +1,7 @@
 # blicca.staticresourceoverride
 
 Training add-on for the Plone Conference: **Simple ways to override patterns
-and Svelte components of Plone Blicca (formerly Classic UI).**
+and Svelte components of Plone Blicca (formerly known as Classic UI).**
 
 Once installed in Plone, all customizations are active — without touching
 `plone.staticresources` or the Mockup package itself.
@@ -180,9 +180,10 @@ upgrades and rebuild.
 
 ### Install in Plone
 
-No Plone site yet? Follow the official installation documentation:
+No Plone site yet? Follow the official installation documentation,
 [Create a Classic UI project with
-Cookieplone](https://6.docs.plone.org/install/create-project-cookieplone.html#create-a-classic-ui-project).
+Cookieplone](https://6.docs.plone.org/install/create-project-cookieplone.html#create-a-classic-ui-project)
+(the Plone documentation still uses the former name of Blicca).
 
 In a Cookieplone project, add the package as a source checkout to `mx.ini`
 and re-run `make install` (mxdev clones it into `sources/` and installs it

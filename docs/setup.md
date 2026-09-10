@@ -1,22 +1,23 @@
 ---
 myst:
   html_meta:
-    "description": "Set up a Plone Classic UI project and the blicca.staticresourceoverride training add-on."
-    "property=og:description": "Set up a Plone Classic UI project and the blicca.staticresourceoverride training add-on."
+    "description": "Set up a Plone project with Blicca and the blicca.staticresourceoverride training add-on."
+    "property=og:description": "Set up a Plone project with Blicca and the blicca.staticresourceoverride training add-on."
     "property=og:title": "Setup"
-    "keywords": "Plone, Classic UI, Cookieplone, pnpm, installation, training setup"
+    "keywords": "Plone, Blicca, Cookieplone, pnpm, installation, training setup"
 ---
 
 (blicca-setup-label)=
 
 # Setup
 
-In this chapter, we create a Plone Classic UI project, and install the training add-on.
+In this chapter, we create a Plone project with Blicca, and install the training add-on.
 At the end, your browser console proves that your first own bundle is loaded.
 
-## Create a Plone Classic UI project
+## Create a Plone project with Blicca
 
 Follow the official installation documentation to {doc}`create a Classic UI project with Cookieplone <plone:install/create-project-cookieplone>`.
+The Plone documentation still uses the former name of Blicca.
 In short:
 
 ```shell

@@ -1,6 +1,7 @@
-# Half-Day Training: Overriding Blicca — Patterns & Svelte Components in Plone Classic UI
+# Half-Day Training: Overriding Blicca — Patterns & Svelte Components in Plone
 
-A 4-hour hands-on training. Participants build their own
+A 4-hour hands-on training on Blicca (formerly known as Classic UI), Plone's
+server-rendered frontend. Participants build their own
 `<name>.staticresourceoverride` add-on step by step, with this repository as
 the reference implementation and safety net.
 
@@ -44,10 +45,10 @@ Participants need:
 
 ## Setup (Block 0 in the schedule)
 
-**1. A Plone Classic UI project** — follow the official installation
-documentation: [Create a Classic UI project with
-Cookieplone](https://6.docs.plone.org/install/create-project-cookieplone.html#create-a-classic-ui-project).
-In short:
+**1. A Plone project with Blicca** — follow the official installation
+documentation, [Create a Classic UI project with
+Cookieplone](https://6.docs.plone.org/install/create-project-cookieplone.html#create-a-classic-ui-project)
+(the Plone documentation still uses the former name). In short:
 
 ```bash
 uvx cookieplone classic_project

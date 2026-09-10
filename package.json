@@ -1,7 +1,7 @@
 {
     "name": "blicca-staticresourceoverride",
     "version": "1.0.0",
-    "description": "Blicca (Plone Classic UI) pattern and Svelte component overrides — training add-on",
+    "description": "Blicca (formerly Plone Classic UI) pattern and Svelte component overrides — training add-on",
     "license": "GPL-2.0-only",
     "engines": {
         "node": ">=22"

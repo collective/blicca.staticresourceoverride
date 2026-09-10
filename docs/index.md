@@ -1,8 +1,8 @@
 ---
 myst:
   html_meta:
-    "description": "Half-day training on customizing the Blicca (Plone Classic UI) JavaScript stack: pattern options, custom patterns, replacing core patterns, and overriding Svelte components."
-    "property=og:description": "Half-day training on customizing the Blicca (Plone Classic UI) JavaScript stack: pattern options, custom patterns, replacing core patterns, and overriding Svelte components."
+    "description": "Half-day training on customizing the Blicca (formerly Plone Classic UI) JavaScript stack: pattern options, custom patterns, replacing core patterns, and overriding Svelte components."
+    "property=og:description": "Half-day training on customizing the Blicca (formerly Plone Classic UI) JavaScript stack: pattern options, custom patterns, replacing core patterns, and overriding Svelte components."
     "property=og:title": "Blicca JS stack insights — how to customize Mockup"
     "keywords": "Plone, Blicca, Classic UI, Mockup, Patternslib, Svelte, JavaScript, training, customization"
 ---
@@ -14,7 +14,7 @@ myst:
 Level
 :   Beginner to intermediate
 
-Blicca — the Classic UI of Plone — ships a modern JavaScript stack.
+Blicca — Plone's server-rendered frontend, formerly known as Classic UI — ships a modern JavaScript stack.
 It consists of Patternslib-based patterns, webpack module federation, and Svelte apps such as the content browser.
 The stack is very customizable, if you know where the hooks are.
 

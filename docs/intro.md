@@ -46,7 +46,7 @@ Why Svelte, and not React?
 Svelte compiles components to small, plain JavaScript without a virtual DOM, so the runtime footprint stays small.
 That is a good fit for a server-rendered UI that is progressively enhanced with JavaScript.
 Components read like HTML, CSS, and JavaScript, which keeps the learning curve flat for integrators.
-And Classic UI deliberately stays free of React dependencies: it does not need Volto's stack to render a widget.
+And Blicca deliberately stays free of React dependencies: it does not need Volto's stack to render a widget.
 
 ## See it live
 

@@ -19,7 +19,7 @@
   <genericsetup:registerProfile
       name="default"
       title="Blicca Static Resource Override (Training)"
-      description="Registers bundles with pattern and Svelte overrides for Blicca (Classic UI)."
+      description="Registers bundles with pattern and Svelte overrides for Blicca (formerly Classic UI)."
       directory="profiles/default"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
