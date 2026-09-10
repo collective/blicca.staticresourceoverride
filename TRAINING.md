@@ -30,7 +30,7 @@ Participants need:
 - Basic Plone knowledge (installing add-ons, GenericSetup profiles).
 - JavaScript basics: ES6+ syntax, module imports. No Svelte experience
   required.
-- A laptop with: Python ≥ 3.10, Node ≥ 18, **pnpm** (`corepack enable` is
+- A laptop with: Python ≥ 3.10, Node ≥ 22, **pnpm** (`corepack enable` is
   all it takes — the version is pinned in `package.json`), git, a code
   editor.
 
@@ -139,9 +139,8 @@ No slides marathon — one architecture diagram and a browser dev-tools tour:
 
 ### Block 0 — Setup (30 min)
 
-Everyone reaches the success check above. Pair up stragglers; the
-trainer-provided fallback (prepared project / docker compose) catches
-environment disasters. This block is deliberately generous — losing 10
+Everyone reaches the success check above.
+This block is deliberately generous — losing 10
 minutes here saves 30 later.
 
 ### Block 1 — Overrides without JavaScript (30 min)
@@ -257,7 +256,7 @@ component.
 
 ### Production notes, Q&A (20 min)
 
-- Version pinning: `@plone/mockup` / `@patternslib/patternslib` must match
+- Version pinning: `@plone/mockup` / `@patternslib/patternslib` should match
   the versions shipped by `plone.staticresources` — recheck on every Plone
   upgrade, then rebuild.
 - Clean uninstall: bundle records via `remove="true"`, dict entries in

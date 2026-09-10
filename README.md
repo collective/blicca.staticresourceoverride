@@ -14,7 +14,7 @@ Once installed in Plone, all customizations are active — without touching
 
 - **Mockup** (`@plone/mockup`) is the JS package behind the Plone bundle
   (`++plone++static/bundle-plone/bundle.min.js`, registered as bundle
-  `plone`).
+  `plone`) in Plone's **resource registry (@@resourceregistry-controlpanel)**.
 - Patterns are registered in the **Patternslib registry** and initialized
   during the DOM scan via their **trigger** (a CSS selector, e.g.
   `.pat-tinymce`). Rule of thumb: **first registration wins** — whoever
@@ -48,9 +48,9 @@ adapters render on the `<body>` for the same pattern — powerful, but be
 deliberate.
 
 One catch, worth understanding: options alone don't run a pattern — the
-**trigger class** has to be present. The `pat-markspeciallinks` class on
-the `<body>` is only rendered when one of Plone's link settings is enabled,
-so the profile also sets `plone.mark_special_links`
+**trigger class** has to be present. The `pat-markspeciallinks` class - a Pattern trigger class - on
+the `<body>` is only rendered when one of Plone's link settings is enabled.
+This tutorial's profile profile sets `plone.mark_special_links` to enable the Pattern
 ([`linksettings.xml`](src/blicca/staticresourceoverride/profiles/default/registry/linksettings.xml));
 without it neither the original pattern nor our step 3 replacement would
 ever run.
@@ -173,7 +173,7 @@ or the resource cache is bypassed).
 and an `allowBuilds` allowlist for dependency build scripts.
 
 **Important:** The versions of `@plone/mockup` and
-`@patternslib/patternslib` in [`package.json`](package.json) have to match
+`@patternslib/patternslib` in [`package.json`](package.json) should match
 the Mockup version shipped with `plone.staticresources` — module federation
 negotiates shared modules via version ranges. So keep them in sync on Plone
 upgrades and rebuild.
