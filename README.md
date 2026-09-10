@@ -105,21 +105,21 @@ Three building blocks:
 2. Registration in the shared component registry
    ([`resources/overrides.js`](resources/overrides.js)):
 
-   ```js
-   import plone_registry from "@plone/registry";
-   plone_registry.registerComponent({
-     name: "blicca.SelectedItem",
-     component: BliccaSelectedItem,
-   });
-   ```
+    ```js
+    import plone_registry from "@plone/registry";
+    plone_registry.registerComponent({
+        name: "blicca.SelectedItem",
+        component: BliccaSelectedItem,
+    });
+    ```
 
-   This works because host and add-on share **one Svelte runtime** via
-   module federation — `svelte` and `svelte/` singleton shares on both
-   sides, see [`webpack.config.js`](webpack.config.js). Svelte keeps its
-   reactivity state in module-level variables, so a component compiled
-   against a second runtime copy cannot be mounted by the host. The Plone
-   bundle shares its runtime since Mockup 5.6.9; on older bundles this
-   override fails with `Cannot read properties of null (reading 'nodes')`.
+    This works because host and add-on share **one Svelte runtime** via
+    module federation — `svelte` and `svelte/` singleton shares on both
+    sides, see [`webpack.config.js`](webpack.config.js). Svelte keeps its
+    reactivity state in module-level variables, so a component compiled
+    against a second runtime copy cannot be mounted by the host. The Plone
+    bundle shares its runtime since Mockup 5.6.9; on older bundles this
+    override fails with `Cannot read properties of null (reading 'nodes')`.
 
 3. Activation via the pattern option `componentRegistryKeys.selectedItem` —
    site-wide and purely declarative through the registry record
@@ -141,10 +141,10 @@ Three building blocks:
   `++plone++blicca.staticresourceoverride/…`
 - [`profiles/default/registry/bundles.xml`](src/blicca/staticresourceoverride/profiles/default/registry/bundles.xml)
   registers two bundles:
-  - `blicca-preload` → the blacklist file (synchronous, without `depends`,
-    rendered before the `plone` bundle)
-  - `blicca-staticresourceoverride` → the built module federation remote
-    (`depends: plone`)
+    - `blicca-preload` → the blacklist file (synchronous, without `depends`,
+      rendered before the `plone` bundle)
+    - `blicca-staticresourceoverride` → the built module federation remote
+      (`depends: plone`)
 - Uninstall: the bundle records are removed via `remove="true"`, the
   `plone.patternoptions` entry in the `post_uninstall` handler
   ([`setuphandlers.py`](src/blicca/staticresourceoverride/setuphandlers.py)).

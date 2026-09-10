@@ -1,10 +1,10 @@
 ---
 myst:
-  html_meta:
-    "description": "Override a Svelte component of the Blicca content browser via the shared @plone/registry and one shared Svelte runtime."
-    "property=og:description": "Override a Svelte component of the Blicca content browser via the shared @plone/registry and one shared Svelte runtime."
-    "property=og:title": "Overriding a Svelte component"
-    "keywords": "Plone, Blicca, Svelte, contentbrowser, plone registry, componentRegistryKeys, module federation"
+    html_meta:
+        "description": "Override a Svelte component of the Blicca content browser via the shared @plone/registry and one shared Svelte runtime."
+        "property=og:description": "Override a Svelte component of the Blicca content browser via the shared @plone/registry and one shared Svelte runtime."
+        "property=og:title": "Overriding a Svelte component"
+        "keywords": "Plone, Blicca, Svelte, contentbrowser, plone registry, componentRegistryKeys, module federation"
 ---
 
 (blicca-svelte-override-label)=

@@ -1,10 +1,10 @@
 ---
 myst:
-  html_meta:
-    "description": "Configure Blicca patterns site-wide with the plone.patternoptions registry record, without writing any JavaScript."
-    "property=og:description": "Configure Blicca patterns site-wide with the plone.patternoptions registry record, without writing any JavaScript."
-    "property=og:title": "Overrides without JavaScript"
-    "keywords": "Plone, Blicca, patternoptions, registry, pattern options, markspeciallinks"
+    html_meta:
+        "description": "Configure Blicca patterns site-wide with the plone.patternoptions registry record, without writing any JavaScript."
+        "property=og:description": "Configure Blicca patterns site-wide with the plone.patternoptions registry record, without writing any JavaScript."
+        "property=og:title": "Overrides without JavaScript"
+        "keywords": "Plone, Blicca, patternoptions, registry, pattern options, markspeciallinks"
 ---
 
 (blicca-pattern-options-label)=
@@ -28,7 +28,7 @@ Open {menuselection}`Site Setup --> Management --> Configuration Registry` and s
 Add an entry with the key `markspeciallinks` and the value:
 
 ```json
-{"external_links_open_new_window": "true"}
+{ "external_links_open_new_window": "true" }
 ```
 
 Reload the page, and inspect the `<body>` element in the developer tools.

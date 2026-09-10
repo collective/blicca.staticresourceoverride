@@ -1,10 +1,10 @@
 ---
 myst:
-  html_meta:
-    "description": "Replace a Blicca core pattern with your own implementation, using the Patternslib pattern blacklist."
-    "property=og:description": "Replace a Blicca core pattern with your own implementation, using the Patternslib pattern blacklist."
-    "property=og:title": "Replacing a core pattern"
-    "keywords": "Plone, Blicca, Patternslib, blacklist, markspeciallinks, override"
+    html_meta:
+        "description": "Replace a Blicca core pattern with your own implementation, using the Patternslib pattern blacklist."
+        "property=og:description": "Replace a Blicca core pattern with your own implementation, using the Patternslib pattern blacklist."
+        "property=og:title": "Replacing a core pattern"
+        "keywords": "Plone, Blicca, Patternslib, blacklist, markspeciallinks, override"
 ---
 
 (blicca-replace-pattern-label)=
@@ -79,7 +79,7 @@ export default MarkSpecialLinks.extend({
             true,
             {},
             this.defaults,
-            mockupParser.getOptions(this.el, "markspeciallinks")
+            mockupParser.getOptions(this.el, "markspeciallinks"),
         );
         this.protocol_icon_map = {
             ...this.protocol_icon_map,
@@ -93,10 +93,10 @@ export default MarkSpecialLinks.extend({
 
 Note the three tricks:
 
--   We extend the original class, and reuse its whole implementation.
--   We register under the name `blicca-markspeciallinks`, with the original trigger `.pat-markspeciallinks`.
--   The Mockup parser reads options based on the pattern name, and our name differs.
-    Therefore, `init()` fetches the original's options itself with `mockupParser.getOptions()`, including the inheritance from the `<body>`.
+- We extend the original class, and reuse its whole implementation.
+- We register under the name `blicca-markspeciallinks`, with the original trigger `.pat-markspeciallinks`.
+- The Mockup parser reads options based on the pattern name, and our name differs.
+  Therefore, `init()` fetches the original's options itself with `mockupParser.getOptions()`, including the inheritance from the `<body>`.
 
 ## Exercise
 

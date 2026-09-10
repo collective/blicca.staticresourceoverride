@@ -1,10 +1,10 @@
 ---
 myst:
-  html_meta:
-    "description": "Set up a Plone project with Blicca and the blicca.staticresourceoverride training add-on."
-    "property=og:description": "Set up a Plone project with Blicca and the blicca.staticresourceoverride training add-on."
-    "property=og:title": "Setup"
-    "keywords": "Plone, Blicca, Cookieplone, pnpm, installation, training setup"
+    html_meta:
+        "description": "Set up a Plone project with Blicca and the blicca.staticresourceoverride training add-on."
+        "property=og:description": "Set up a Plone project with Blicca and the blicca.staticresourceoverride training add-on."
+        "property=og:title": "Setup"
+        "keywords": "Plone, Blicca, Cookieplone, pnpm, installation, training setup"
 ---
 
 (blicca-setup-label)=
@@ -66,10 +66,10 @@ Then install {guilabel}`Blicca Static Resource Override (Training)` in the add-o
 The package manager is pnpm, the same as Mockup itself uses.
 The file `pnpm-workspace.yaml` mirrors the known caveats of [plone/mockup](https://github.com/plone/mockup):
 
--   `shamefullyHoist: true`, because webpack module resolution needs a flat `node_modules` directory.
--   `overrides` that remove the git subdependencies `slick-carousel`, `slides`, and `select2`, because pnpm blocks exotic subdependencies.
-    Only patterns that this add-on does not import need them.
--   An `allowBuilds` allowlist, because pnpm 10 and later block dependency build scripts by default.
+- `shamefullyHoist: true`, because webpack module resolution needs a flat `node_modules` directory.
+- `overrides` that remove the git subdependencies `slick-carousel`, `slides`, and `select2`, because pnpm blocks exotic subdependencies.
+  Only patterns that this add-on does not import need them.
+- An `allowBuilds` allowlist, because pnpm 10 and later block dependency build scripts by default.
 
 ## Success check
 

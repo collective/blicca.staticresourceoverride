@@ -1,10 +1,10 @@
 ---
 myst:
-  html_meta:
-    "description": "Build and register your own Patternslib pattern for Blicca, and ship it as a module federation remote bundle."
-    "property=og:description": "Build and register your own Patternslib pattern for Blicca, and ship it as a module federation remote bundle."
-    "property=og:title": "Your own pattern"
-    "keywords": "Plone, Blicca, Patternslib, BasePattern, webpack, module federation, bundle"
+    html_meta:
+        "description": "Build and register your own Patternslib pattern for Blicca, and ship it as a module federation remote bundle."
+        "property=og:description": "Build and register your own Patternslib pattern for Blicca, and ship it as a module federation remote bundle."
+        "property=og:title": "Your own pattern"
+        "keywords": "Plone, Blicca, Patternslib, BasePattern, webpack, module federation, bundle"
 ---
 
 (blicca-own-pattern-label)=
@@ -45,9 +45,9 @@ registry.register(Pattern);
 
 Three things matter here:
 
--   The `trigger` is a plain CSS selector.
--   The `Parser` declares the options, and fills them from `data-pat-blicca` attributes, including inheritance from parent elements.
--   `registry.register(Pattern)` makes the registry scan the document, including content that arrives later through modals, `pat-inject`, or the folder contents view.
+- The `trigger` is a plain CSS selector.
+- The `Parser` declares the options, and fills them from `data-pat-blicca` attributes, including inheritance from parent elements.
+- `registry.register(Pattern)` makes the registry scan the document, including content that arrives later through modals, `pat-inject`, or the folder contents view.
 
 ## The bundle around it
 

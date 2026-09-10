@@ -1,10 +1,10 @@
 ---
 myst:
-  html_meta:
-    "description": "Notes for trainers: schedule, timing, and fallback strategies for the Blicca customization training."
-    "property=og:description": "Notes for trainers: schedule, timing, and fallback strategies for the Blicca customization training."
-    "property=og:title": "Notes for trainers"
-    "keywords": "Plone, Blicca, training, trainer notes, schedule"
+    html_meta:
+        "description": "Notes for trainers: schedule, timing, and fallback strategies for the Blicca customization training."
+        "property=og:description": "Notes for trainers: schedule, timing, and fallback strategies for the Blicca customization training."
+        "property=og:title": "Notes for trainers"
+        "keywords": "Plone, Blicca, training, trainer notes, schedule"
 ---
 
 (blicca-trainer-notes-label)=
@@ -16,16 +16,16 @@ The training is designed for half a day, or 240 minutes including one break.
 
 ## Schedule
 
-| Time      | Block                                          | Minutes |
-| --------- | ---------------------------------------------- | ------- |
-| 0:00–0:20 | {ref}`blicca-intro-label`                      | 20      |
-| 0:20–0:50 | {ref}`blicca-setup-label`                      | 30      |
-| 0:50–1:20 | {ref}`blicca-pattern-options-label`            | 30      |
-| 1:20–1:50 | {ref}`blicca-own-pattern-label`                | 30      |
-| 1:50–2:05 | Break                                          | 15      |
-| 2:05–2:50 | {ref}`blicca-replace-pattern-label`            | 45      |
-| 2:50–3:40 | {ref}`blicca-svelte-override-label`            | 50      |
-| 3:40–4:00 | {ref}`blicca-production-label`, questions      | 20      |
+| Time      | Block                                     | Minutes |
+| --------- | ----------------------------------------- | ------- |
+| 0:00–0:20 | {ref}`blicca-intro-label`                 | 20      |
+| 0:20–0:50 | {ref}`blicca-setup-label`                 | 30      |
+| 0:50–1:20 | {ref}`blicca-pattern-options-label`       | 30      |
+| 1:20–1:50 | {ref}`blicca-own-pattern-label`           | 30      |
+| 1:50–2:05 | Break                                     | 15      |
+| 2:05–2:50 | {ref}`blicca-replace-pattern-label`       | 45      |
+| 2:50–3:40 | {ref}`blicca-svelte-override-label`       | 50      |
+| 3:40–4:00 | {ref}`blicca-production-label`, questions | 20      |
 
 ## Before the training
 

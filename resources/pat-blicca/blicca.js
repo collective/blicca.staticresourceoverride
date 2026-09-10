@@ -34,7 +34,7 @@ class Pattern extends BasePattern {
              font-size: 0.6em;
              vertical-align: middle;
              color: white;
-             background-color: ${this.options.color};`
+             background-color: ${this.options.color};`,
         );
         this.el.style.outline = `2px dashed ${this.options.color}`;
         this.el.style.outlineOffset = "0.2em";

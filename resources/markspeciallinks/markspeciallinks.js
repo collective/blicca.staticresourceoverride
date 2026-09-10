@@ -31,7 +31,7 @@ export default MarkSpecialLinks.extend({
             true,
             {},
             this.defaults,
-            mockupParser.getOptions(this.el, "markspeciallinks")
+            mockupParser.getOptions(this.el, "markspeciallinks"),
         );
 
         // Our customization: external http(s) links get a different, more

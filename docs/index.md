@@ -1,10 +1,10 @@
 ---
 myst:
-  html_meta:
-    "description": "Half-day training on customizing the Blicca (formerly Plone Classic UI) JavaScript stack: pattern options, custom patterns, replacing core patterns, and overriding Svelte components."
-    "property=og:description": "Half-day training on customizing the Blicca (formerly Plone Classic UI) JavaScript stack: pattern options, custom patterns, replacing core patterns, and overriding Svelte components."
-    "property=og:title": "Blicca JS stack insights — how to customize Mockup"
-    "keywords": "Plone, Blicca, Classic UI, Mockup, Patternslib, Svelte, JavaScript, training, customization"
+    html_meta:
+        "description": "Half-day training on customizing the Blicca (formerly Plone Classic UI) JavaScript stack: pattern options, custom patterns, replacing core patterns, and overriding Svelte components."
+        "property=og:description": "Half-day training on customizing the Blicca (formerly Plone Classic UI) JavaScript stack: pattern options, custom patterns, replacing core patterns, and overriding Svelte components."
+        "property=og:title": "Blicca JS stack insights — how to customize Mockup"
+        "keywords": "Plone, Blicca, Classic UI, Mockup, Patternslib, Svelte, JavaScript, training, customization"
 ---
 
 (blicca-label)=
@@ -12,7 +12,7 @@ myst:
 # Blicca JS stack insights — how to customize Mockup
 
 Level
-:   Beginner to intermediate
+: Beginner to intermediate
 
 Blicca — Plone's server-rendered frontend, formerly known as Classic UI — ships a modern JavaScript stack.
 It consists of Patternslib-based patterns, webpack module federation, and Svelte apps such as the content browser.
@@ -39,11 +39,11 @@ No Svelte experience is required.
 
 Bring a laptop with the following software installed:
 
--   Python 3.10 or later
--   Node.js 22 or later
--   pnpm, where `corepack enable` is all it takes, as the version is pinned in the project's `package.json`
--   Git
--   A code editor
+- Python 3.10 or later
+- Node.js 22 or later
+- pnpm, where `corepack enable` is all it takes, as the version is pinned in the project's `package.json`
+- Git
+- A code editor
 
 ```{tip}
 Run the setup from {ref}`blicca-setup-label` before the training.
@@ -55,12 +55,12 @@ This warms your package caches and saves conference wifi.
 The git history of the training repository mirrors the four training chapters.
 Each tag is a working state of the add-on after the corresponding chapter:
 
-| Tag      | State after                                                  |
-| -------- | ------------------------------------------------------------ |
-| `step-1` | Pattern options via the registry only, no JavaScript build yet |
+| Tag      | State after                                                       |
+| -------- | ----------------------------------------------------------------- |
+| `step-1` | Pattern options via the registry only, no JavaScript build yet    |
 | `step-2` | Own pattern `pat-blicca` plus webpack and module federation setup |
-| `step-3` | Core pattern `markspeciallinks` replaced via the blacklist    |
-| `step-4` | Svelte `SelectedItem` override, identical to `main`           |
+| `step-3` | Core pattern `markspeciallinks` replaced via the blacklist        |
+| `step-4` | Svelte `SelectedItem` override, identical to `main`               |
 
 If you fall behind, jump to the current step and continue from there:
 

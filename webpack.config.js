@@ -11,7 +11,7 @@ module.exports = () => {
         entry: {
             "blicca.staticresourceoverride.min": path.resolve(
                 __dirname,
-                "resources/index.js"
+                "resources/index.js",
             ),
         },
     };
@@ -24,7 +24,7 @@ module.exports = () => {
     // Build directly into the static directory of the Python package.
     config.output.path = path.resolve(
         __dirname,
-        "src/blicca/staticresourceoverride/static/bundles"
+        "src/blicca/staticresourceoverride/static/bundles",
     );
 
     // Svelte support — analogous to Mockup's webpack.config.js.
@@ -68,7 +68,7 @@ module.exports = () => {
                 // very same runtime instance as the Plone bundle. The
                 // prefix share ("svelte/") covers the subpath imports of
                 // compiled components, such as "svelte/internal/client".
-                svelte: {
+                "svelte": {
                     singleton: true,
                     requiredVersion: package_json.dependencies["svelte"],
                 },
@@ -77,7 +77,7 @@ module.exports = () => {
                     requiredVersion: package_json.dependencies["svelte"],
                 },
             },
-        })
+        }),
     );
 
     if (process.env.NODE_ENV === "development") {

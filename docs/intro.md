@@ -1,10 +1,10 @@
 ---
 myst:
-  html_meta:
-    "description": "How the Blicca JavaScript stack works: Mockup, the Patternslib registry, module federation, and Svelte components."
-    "property=og:description": "How the Blicca JavaScript stack works: Mockup, the Patternslib registry, module federation, and Svelte components."
-    "property=og:title": "The Blicca JS stack in a nutshell"
-    "keywords": "Plone, Blicca, Mockup, Patternslib, module federation, Svelte, registry"
+    html_meta:
+        "description": "How the Blicca JavaScript stack works: Mockup, the Patternslib registry, module federation, and Svelte components."
+        "property=og:description": "How the Blicca JavaScript stack works: Mockup, the Patternslib registry, module federation, and Svelte components."
+        "property=og:title": "The Blicca JS stack in a nutshell"
+        "keywords": "Plone, Blicca, Mockup, Patternslib, module federation, Svelte, registry"
 ---
 
 (blicca-intro-label)=
@@ -52,9 +52,9 @@ And Blicca deliberately stays free of React dependencies: it does not need Volto
 
 Open your browser's developer tools on any Plone page, and observe the stack at work:
 
--   The `<body>` element carries `data-pat-*` attributes with global pattern options.
--   The network tab shows the bundle and its lazily loaded chunks.
--   The console logs a message for every initialized module federation bundle:
+- The `<body>` element carries `data-pat-*` attributes with global pattern options.
+- The network tab shows the bundle and its lazily loaded chunks.
+- The console logs a message for every initialized module federation bundle:
 
 ```console
 Patternslib Module Federation: Loaded and initialized bundle "__patternslib_mf__bliccastaticresourceoverride".
