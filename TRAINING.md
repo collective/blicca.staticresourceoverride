@@ -223,23 +223,36 @@ original pattern being skipped.
 ### Block 4 — Overriding a Svelte component (50 min)
 
 **Concepts:** the content browser as a Svelte app; the `@plone/registry`
-component registry as the shared extension point;
-`componentRegistryKeys.selectedItem` as the activation switch (set globally
-via `plone.patternoptions` — closing the circle to Block 1).
+component registry as the shared extension point; the default key
+`pat-contentbrowser.SelectedItem` for a site-wide override without any
+configuration (Mockup 5.6.11 or later); a custom key plus
+`componentRegistryKeys.selectedItem` for a scoped override (set globally via
+`plone.patternoptions` — closing the circle to Block 1).
 
 **Walkthrough:**
 [`resources/contentbrowser/SelectedItem.svelte`](resources/contentbrowser/SelectedItem.svelte)
-(props interface must match the original!), the `registerComponent` call in
-[`overrides.js`](resources/overrides.js), the `contentbrowser` entry in
-`patternoptions.xml`.
+(props interface must match the original!), the `registerComponent` call
+under the default key in [`overrides.js`](resources/overrides.js). Show in
+Mockup's `contentbrowser.js` why this works: the pattern registers its own
+default component only if the key is still empty.
 
 **Exercise:** restyle the component — show the review state with workflow
 colors, bigger thumbnails, or a compact table row. Open a relation/image
-field, select items, watch your component render.
+field, select items, watch your component render. Then scope it: register
+under a custom key, activate it in `plone.patternoptions` (commented example
+in `patternoptions.xml`), rebuild — and switch it off again through the web
+(Configuration Registry) without a rebuild.
 
 **Teaching points:**
 
-- The registration is _lazy_: on a wrong key the content browser silently
+- The lookup happens once per widget, when its selection list mounts: first
+  the custom key from the options, then the default key.
+- Before Mockup 5.6.11 the pattern re-registered its default component on
+  every widget initialization, and `@plone/registry` overwrites silently —
+  an add-on registration under the default key was reset, the custom key
+  was the only hook. Nice "why did this need a core fix" story:
+  [plone/mockup#1637](https://github.com/plone/mockup/pull/1637).
+- The custom key is _lazy_: on a wrong key the content browser silently
   falls back to the default component — check for typos first.
 - Svelte knowledge required: template syntax and `$props()` — that's it for
   this exercise.

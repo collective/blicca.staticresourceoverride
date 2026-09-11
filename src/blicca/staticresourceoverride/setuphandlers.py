@@ -4,6 +4,12 @@ from zope.component import getUtility
 from zope.interface import implementer
 
 
+# Keys this add-on adds to the shared dict record plone.patternoptions:
+# "markspeciallinks" via the default profile (step 1), "contentbrowser" via
+# the scoping exercise of step 4 (commented example in patternoptions.xml).
+PATTERN_OPTION_KEYS = ("markspeciallinks", "contentbrowser")
+
+
 @implementer(INonInstallable)
 class HiddenProfiles:
     def getNonInstallableProfiles(self):
@@ -15,12 +21,12 @@ class HiddenProfiles:
 
 
 def post_uninstall(context):
-    """Remove our entry from the shared dict record plone.patternoptions —
+    """Remove our entries from the shared dict record plone.patternoptions —
     individual dict keys (unlike whole records) cannot be removed
     declaratively via registry.xml.
     """
     registry = getUtility(IRegistry)
     options = dict(registry.get("plone.patternoptions") or {})
-    if "contentbrowser" in options:
-        del options["contentbrowser"]
-        registry["plone.patternoptions"] = options
+    remaining = {k: v for k, v in options.items() if k not in PATTERN_OPTION_KEYS}
+    if remaining != options:
+        registry["plone.patternoptions"] = remaining

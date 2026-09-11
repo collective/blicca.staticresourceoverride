@@ -13,7 +13,8 @@
       remove="true"
       />
 
-  <!-- The "contentbrowser" entry in plone.patternoptions is removed in the
+  <!-- Our entries in plone.patternoptions ("markspeciallinks", and
+       "contentbrowser" from the scoping exercise) are removed in the
        post_uninstall handler (setuphandlers.py) — registry.xml cannot
        remove individual dict elements. -->
 

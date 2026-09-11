@@ -94,24 +94,32 @@ Visible result: external links get the icon `box-arrow-up-right` instead of
 
 ### 4. Override a Svelte component (demo: content browser `SelectedItem`)
 
-The `pat-contentbrowser` first looks up its `SelectedItem` component under a
-configurable registry key before falling back to the default
-(`pat-contentbrowser.SelectedItem`).
+The `pat-contentbrowser` looks up its `SelectedItem` component in the
+`@plone/registry` component registry — first under a configurable key, then
+under the default key `pat-contentbrowser.SelectedItem`. Both keys are hooks
+for add-ons.
 
-Three building blocks:
+Two building blocks:
 
 1. Your own component with the **same props interface** as the original:
    [`resources/contentbrowser/SelectedItem.svelte`](resources/contentbrowser/SelectedItem.svelte)
-2. Registration in the shared component registry
+2. Registration under the **default key** in the shared component registry
    ([`resources/overrides.js`](resources/overrides.js)):
 
     ```js
     import plone_registry from "@plone/registry";
     plone_registry.registerComponent({
-        name: "blicca.SelectedItem",
+        name: "pat-contentbrowser.SelectedItem",
         component: BliccaSelectedItem,
     });
     ```
+
+    That replaces the component site-wide, without any configuration. Since
+    Mockup 5.6.11 the pattern registers its own default component only if
+    nothing is registered under that key yet, so the add-on registration
+    wins no matter whether the add-on bundle initializes before or after
+    the pattern. (Older bundles re-registered the default on every widget
+    initialization — there, only the custom key below works.)
 
     This works because host and add-on share **one Svelte runtime** via
     module federation — `svelte` and `svelte/` singleton shares on both
@@ -121,18 +129,16 @@ Three building blocks:
     bundle shares its runtime since Mockup 5.6.9; on older bundles this
     override fails with `Cannot read properties of null (reading 'nodes')`.
 
-3. Activation via the pattern option `componentRegistryKeys.selectedItem` —
-   site-wide and purely declarative through the registry record
-   `plone.patternoptions`
-   ([`profiles/default/registry/patternoptions.xml`](src/blicca/staticresourceoverride/profiles/default/registry/patternoptions.xml))
-   — technique 1 again, closing the circle.
-   Plone renders these options as a `data-pat-contentbrowser` attribute on
-   the `<body>`; the options parser inherits them down to every pattern
-   element.
-
-> Alternatively per field/widget: set `data-pat-contentbrowser` directly on
-> the widget, or conditionally via an `IPatternsSettings` adapter (see
-> `Products.CMFPlone.patterns.settings` as a template).
+**Scoping the override** (optional): register the component under a custom
+key (e.g. `blicca.SelectedItem`) instead, and activate it via the pattern
+option `componentRegistryKeys.selectedItem` — site-wide through the registry
+record `plone.patternoptions` (technique 1 again, closing the circle; see the
+commented example in
+[`profiles/default/registry/patternoptions.xml`](src/blicca/staticresourceoverride/profiles/default/registry/patternoptions.xml)),
+per widget via `data-pat-contentbrowser`, or conditionally via an
+`IPatternsSettings` adapter (see `Products.CMFPlone.patterns.settings` as a
+template). The default component stays registered for every widget without
+the option.
 
 ## How everything reaches Plone
 
@@ -226,9 +232,12 @@ bundle "__patternslib_mf__bliccastaticresourceoverride"` confirms that
   warnings.
 - Omitting **`purge="false"`** on `plone.patternoptions` overwrites the
   options of the Plone core and other add-ons.
-- The Svelte component registration is _lazy_: the content browser falls
-  back to the default component if the key is not (yet) registered — a typo
-  in the registry key therefore only shows up as "nothing happens".
+- **Default component wins again** although you registered yours under the
+  default key: the Plone bundle is older than Mockup 5.6.11 — register under
+  a custom key and activate it via `componentRegistryKeys` instead.
+- With a custom key, the component registration is _lazy_: the content
+  browser falls back to the default component if the key is not registered —
+  a typo in the registry key therefore only shows up as "nothing happens".
 - **Two Svelte runtimes**: if the selection list renders an empty slot and
   the console shows `Cannot read properties of null (reading 'nodes')`,
   host and add-on don't share the Svelte runtime — either the Plone bundle

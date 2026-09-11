@@ -33,14 +33,21 @@ import "./markspeciallinks/markspeciallinks";
 // Step 4 — Override a Svelte component.
 //
 // The pat-contentbrowser pulls its "SelectedItem" component from the
-// @plone/registry. We register our own variant under a custom key. It gets
-// activated via the pattern option ``componentRegistryKeys.selectedItem`` —
-// set globally via ``plone.patternoptions``
-// (see profiles/default/registry/patternoptions.xml).
+// @plone/registry. We register our own variant under the default key
+// ``pat-contentbrowser.SelectedItem`` — that replaces the component
+// site-wide, without any configuration. Since Mockup 5.6.11 the pattern
+// registers its own default component only if nothing is registered under
+// that key yet, so our registration wins regardless of the initialization
+// order.
+//
+// To scope the override instead, register under a custom key (e.g.
+// ``blicca.SelectedItem``) and activate it via the pattern option
+// ``componentRegistryKeys.selectedItem`` — e.g. globally via
+// ``plone.patternoptions`` (see profiles/default/registry/patternoptions.xml).
 import BliccaSelectedItem from "./contentbrowser/SelectedItem.svelte";
 
 plone_registry.registerComponent({
-    name: "blicca.SelectedItem",
+    name: "pat-contentbrowser.SelectedItem",
     component: BliccaSelectedItem,
 });
 

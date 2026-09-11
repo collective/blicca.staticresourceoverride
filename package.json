@@ -9,7 +9,7 @@
     "packageManager": "pnpm@12.3.4+sha512.961aa41fb077da3a04a441d9f8e15ebc0c96da8ef710b2eb67bf9ee7cb0610eabd48f1fd85f51cffe73846785fa0f87c56a3a872a1d893f8446741b5cce45457",
     "dependenciesComments": {
         "@patternslib/patternslib": "Has to match the Patternslib version of the Mockup release in plone.staticresources (module federation shared dependencies!).",
-        "@plone/mockup": "Has to match the Mockup version shipped with the deployed Plone (plone.staticresources). Needs the Svelte runtime shared via module federation: Mockup 5.6.9 or later.",
+        "@plone/mockup": "Has to match the Mockup version shipped with the deployed Plone (plone.staticresources). Needs the Svelte runtime shared via module federation (Mockup 5.6.9 or later) and the default-key override of the content browser component (Mockup 5.6.11 or later).",
         "@plone/registry": "Component registry — use the same major/minor as Mockup so the instance is shared via module federation.",
         "svelte": "Must match Mockup's Svelte version: host and add-on share one runtime instance (singleton) via module federation."
     },

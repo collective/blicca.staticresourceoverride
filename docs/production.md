@@ -23,22 +23,28 @@ If the versions drift too far apart, module federation loads two instances, and 
 On every Plone upgrade, align the versions, and rebuild the bundle.
 Check the browser console for module federation warnings.
 
+Some techniques also need a minimum Mockup version in the Plone bundle.
+The shared Svelte runtime needs Mockup 5.6.9, and the override under the default component key needs Mockup 5.6.11.
+
 ## Clean uninstall
 
 The uninstall profile removes what the default profile added:
 
 - Bundle records are removed with `remove="true"` in {file}`profiles/uninstall/registry/bundles.xml`.
 - Whole records, such as `plone.mark_special_links`, are reset with a plain value.
-- Single dictionary keys, such as our entry in `plone.patternoptions`, cannot be removed declaratively.
+- Single dictionary keys, such as our entries in `plone.patternoptions`, cannot be removed declaratively.
   The `post_uninstall` handler in {file}`setuphandlers.py` removes them in Python:
 
 ```python
+PATTERN_OPTION_KEYS = ("markspeciallinks", "contentbrowser")
+
+
 def post_uninstall(context):
     registry = getUtility(IRegistry)
     options = dict(registry.get("plone.patternoptions") or {})
-    if "contentbrowser" in options:
-        del options["contentbrowser"]
-        registry["plone.patternoptions"] = options
+    remaining = {k: v for k, v in options.items() if k not in PATTERN_OPTION_KEYS}
+    if remaining != options:
+        registry["plone.patternoptions"] = remaining
 ```
 
 ## Known pitfalls
@@ -60,8 +66,13 @@ The host and the add-on don't share the Svelte runtime.
 Either the Plone bundle is older than Mockup 5.6.9, or the `svelte` and `svelte/` shares are missing in your webpack configuration.
 See {ref}`blicca-svelte-override-label`.
 
+The default component wins again
+: You registered your component under the default key, but the content browser still renders the original.
+The Plone bundle is older than Mockup 5.6.11, which re-registered the default component on every widget initialization.
+Register your component under a custom key, and activate it with `componentRegistryKeys`, see {ref}`blicca-svelte-override-scoping-label`.
+
 Lazy component registration
-: With a typo in the registry key, the content browser silently falls back to the default component.
+: With a typo in a custom registry key, the content browser silently falls back to the default component.
 
 ## Where to go next
 
