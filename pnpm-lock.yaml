@@ -118,8 +118,8 @@ importers:
         specifier: ^9.10.7
         version: 9.10.7
       '@plone/mockup':
-        specifier: ^5.6.10
-        version: 5.6.10(@popperjs/core@2.11.8)(posthtml@0.16.7)(react@19.2.8)(supports-color@8.1.1)
+        specifier: ^5.6.11
+        version: 5.6.11(@popperjs/core@2.11.8)(posthtml@0.16.7)(react@19.2.8)(supports-color@8.1.1)
       '@plone/registry':
         specifier: ^2.7.3
         version: 2.7.3(react@19.2.8)(supports-color@8.1.1)
@@ -1555,8 +1555,8 @@ packages:
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  '@plone/mockup@5.6.10':
-    resolution: {integrity: sha512-Vnl/Tq+4tBWE1qTqPmPVdQKl6cXX3Nckq4qC7GnofryVlGaJ9G9PmtEX7v0XwxkKSh4uJxGwoQ0rEcpxVujwHg==}
+  '@plone/mockup@5.6.11':
+    resolution: {integrity: sha512-3Wqowgcb2t1/Jq1pp4k97l1uQcDXKhTQW/gcNikjTra6TzcXC39Kizd6B5i+TS+KCHaxDR3u+0L1yKhXORZEfw==}
     engines: {node: '>=22'}
 
   '@plone/registry@2.7.3':
@@ -3777,11 +3777,6 @@ packages:
   jiti@2.7.0:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
-
-  jqtree@1.9.0:
-    resolution: {integrity: sha512-64zUtuhMWHYmYl/UGSGBH668/dwKJuikvv77km0KQZG48ky4Oo0evIR1z9pt0R7xvFF1EP17YBhDhkvtBuXSxQ==}
-    peerDependencies:
-      jquery: '>= 3'
 
   jqtree@1.9.1:
     resolution: {integrity: sha512-0/NgiFd+227YHDgfXRnh50pYRc/8OLlJ9BDdwk4eJ/R11UA/6aEsWbGmBPwAHjG5pQPuNs2P21WNAX492U2dOw==}
@@ -7388,7 +7383,7 @@ snapshots:
 
   '@pkgr/core@0.3.6': {}
 
-  '@plone/mockup@5.6.10(@popperjs/core@2.11.8)(posthtml@0.16.7)(react@19.2.8)(supports-color@8.1.1)':
+  '@plone/mockup@5.6.11(@popperjs/core@2.11.8)(posthtml@0.16.7)(react@19.2.8)(supports-color@8.1.1)':
     dependencies:
       '@11ty/eleventy-upgrade-help': 3.0.2(posthtml@0.16.7)
       '@patternslib/pat-code-editor': 4.0.1
@@ -8472,7 +8467,7 @@ snapshots:
 
   cs-jqtree-contextmenu@0.1.0(jquery@3.7.1):
     dependencies:
-      jqtree: 1.9.0(jquery@3.7.1)
+      jqtree: 1.9.1(jquery@3.7.1)
     transitivePeerDependencies:
       - jquery
 
@@ -9808,10 +9803,6 @@ snapshots:
   jiti@2.6.1: {}
 
   jiti@2.7.0: {}
-
-  jqtree@1.9.0(jquery@3.7.1):
-    dependencies:
-      jquery: 3.7.1
 
   jqtree@1.9.1(jquery@3.7.1):
     dependencies:
