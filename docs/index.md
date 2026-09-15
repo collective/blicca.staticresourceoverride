@@ -70,6 +70,24 @@ pnpm install && pnpm run build
 
 Reinstall the add-on, or reimport its profile, after switching steps, so that new registry records are applied.
 
+## How to update your checkout
+
+We keep improving the material until the training starts.
+The `main` branch only moves forward, but the step tags are re-pointed whenever the material changes, and a plain `git fetch` does not update tags that already exist locally.
+Update the source checkout in your project like this:
+
+```shell
+cd backend/sources/blicca.staticresourceoverride
+git stash
+git fetch --force --tags origin
+git checkout main
+git reset --hard origin/main
+```
+
+`git stash` saves your own changes from the exercises, so that you can restore them later with `git stash pop`.
+`git reset --hard` discards everything that is not on `origin/main`.
+Afterwards, run `pnpm install && pnpm run build` again, and reinstall the add-on.
+
 ```{toctree}
 :caption: Chapters
 :maxdepth: 1

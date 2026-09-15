@@ -121,6 +121,18 @@ pnpm install && pnpm run build
 Re-import the add-on profile (or reinstall the add-on) after switching
 steps, so new registry records are applied.
 
+**Updating a checkout:** `main` only moves forward, but the step tags are
+re-pointed whenever the material changes, and a plain `git fetch` does not
+update tags that already exist locally. Participants update with:
+
+```bash
+cd backend/sources/blicca.staticresourceoverride
+git stash                          # keep own exercise changes, optional
+git fetch --force --tags origin
+git checkout main && git reset --hard origin/main
+pnpm install && pnpm run build
+```
+
 ## Schedule (240 minutes)
 
 | Time      | Block                                   | Minutes |
