@@ -186,16 +186,25 @@ upgrades and rebuild.
 
 ### Install in Plone
 
-No Plone site yet? Follow the official installation documentation,
-[Create a Classic UI project with
-Cookieplone](https://6.docs.plone.org/install/create-project-cookieplone.html#create-a-classic-ui-project)
-(the Plone documentation still uses the former name of Blicca).
+No Plone site yet? Install the [prerequisites from the Plone
+documentation](https://6.docs.plone.org/install/create-project-cookieplone.html#prerequisites-for-installation)
+(uv, Make, git) and generate a project with `uvx cookieplone project`.
+Cookieplone 2.0 has no separate Blicca template any more — answer the
+question _Use Volto as frontend?_ with **No** to get a Blicca project.
 
-In a Cookieplone project, add the package as a source checkout to `mx.ini`
-and re-run `make install` (mxdev clones it into `sources/` and installs it
-as an editable package):
+In a Cookieplone project, add the package as a source checkout to
+`backend/mx.ini`, pin `plone.staticresources` to a release with Mockup
+5.6.11 or later, add `"blicca.staticresourceoverride"` to the
+`dependencies` in `backend/pyproject.toml`, and re-run `make install`
+(mxdev clones it into `backend/sources/` and registers it as an editable
+`tool.uv.sources` entry):
 
 ```ini
+[settings]
+main-package = -e .[test]
+version-overrides =
+    plone.staticresources==3.0.7
+
 [blicca.staticresourceoverride]
 url = https://github.com/collective/blicca.staticresourceoverride.git
 branch = main

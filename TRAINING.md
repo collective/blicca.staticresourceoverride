@@ -31,9 +31,10 @@ Participants need:
 - Basic Plone knowledge (installing add-ons, GenericSetup profiles).
 - JavaScript basics: ES6+ syntax, module imports. No Svelte experience
   required.
-- A laptop with: Python ≥ 3.10, Node ≥ 22, **pnpm** (`corepack enable` is
-  all it takes — the version is pinned in `package.json`), git, a code
-  editor.
+- A laptop with the [prerequisites from the Plone
+  documentation](https://6.docs.plone.org/install/create-project-cookieplone.html#prerequisites-for-installation)
+  (uv, Make, git), plus Node ≥ 22 and **pnpm** (`corepack enable` is all it
+  takes — the version is pinned in `package.json`), and a code editor.
 
 **Send this to participants at least one week before the training:**
 
@@ -45,34 +46,46 @@ Participants need:
 
 ## Setup (Block 0 in the schedule)
 
-**1. A Plone project with Blicca** — follow the official installation
-documentation, [Create a Classic UI project with
-Cookieplone](https://6.docs.plone.org/install/create-project-cookieplone.html#create-a-classic-ui-project)
-(the Plone documentation still uses the former name). In short:
+**1. A Plone project with Blicca** — Cookieplone 2.0 has no separate
+Blicca template any more. Generate a project with the `project` template
+and answer question 10, _Use Volto as frontend?_, with **No**:
 
 ```bash
-uvx cookieplone classic_project
+uvx cookieplone project
 cd <project-slug>
-make install
-make backend-start   # → http://localhost:8080 (admin/admin)
+make install         # uv virtualenv + Plone site "Plone"
+make backend-start   # → http://localhost:8080/Plone (admin/admin)
 ```
 
-**2. This add-on** — Cookieplone projects manage source checkouts with
-[mxdev](https://github.com/mxstack/mxdev). Add the add-on to the project's
-`mx.ini`:
+Sensible answers for the training: Plone version 6.2.2 or later, and No
+for the caching server, Ansible, the GitHub deploy action and the
+documentation scaffold.
+
+**2. This add-on** — the backend lives in `backend/`. Cookieplone projects
+manage source checkouts with [mxdev](https://github.com/mxstack/mxdev).
+Add the add-on to `backend/mx.ini`, and pin `plone.staticresources` to a
+release with Mockup 5.6.11 or later in the same file (Plone 6.2.2 ships
+3.0.6 with Mockup 5.6.10, enough for blocks 1–3, but block 4 needs 5.6.11):
 
 ```ini
+[settings]
+main-package = -e .[test]
+version-overrides =
+    plone.staticresources==3.0.7
+
 [blicca.staticresourceoverride]
 url = https://github.com/collective/blicca.staticresourceoverride.git
 branch = main
 ```
 
-Re-run `make install` — mxdev clones the repository into
-`sources/blicca.staticresourceoverride` and installs it as an editable
-package. Then build the JavaScript inside the checkout:
+Add `"blicca.staticresourceoverride"` to the `dependencies` in
+`backend/pyproject.toml`, then re-run `make install` — mxdev clones the
+repository into `backend/sources/blicca.staticresourceoverride`, registers
+it as an editable `tool.uv.sources` entry, and uv installs it. Then build
+the JavaScript inside the checkout:
 
 ```bash
-cd sources/blicca.staticresourceoverride
+cd backend/sources/blicca.staticresourceoverride
 pnpm install
 pnpm run build
 ```
