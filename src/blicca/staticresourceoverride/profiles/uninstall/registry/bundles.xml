@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry>
+
+  <records
+      interface="plone.base.interfaces.IBundleRegistry"
+      prefix="plone.bundles/blicca-preload"
+      remove="true"
+      />
+
+  <records
+      interface="plone.base.interfaces.IBundleRegistry"
+      prefix="plone.bundles/blicca-staticresourceoverride"
+      remove="true"
+      />
+
+  <!-- Our entries in plone.patternoptions ("markspeciallinks", and
+       "contentbrowser" from the scoping exercise) are removed in the
+       post_uninstall handler (setuphandlers.py) — registry.xml cannot
+       remove individual dict elements. -->
+
+</registry>
