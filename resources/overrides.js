@@ -10,6 +10,7 @@
  * profiles/default/registry/patternoptions.xml.)
  */
 import registry from "@patternslib/patternslib/src/core/registry";
+import plone_registry from "@plone/registry";
 
 // ---------------------------------------------------------------------------
 // Step 2 — Register your own, new pattern.
@@ -27,6 +28,28 @@ import "./pat-blicca/blicca";
 // registered. Our replacement registers itself under its own name, but with
 // the same trigger.
 import "./markspeciallinks/markspeciallinks";
+
+// ---------------------------------------------------------------------------
+// Step 4 — Override a Svelte component.
+//
+// The pat-contentbrowser pulls its "SelectedItem" component from the
+// @plone/registry. We register our own variant under the default key
+// ``pat-contentbrowser.SelectedItem`` — that replaces the component
+// site-wide, without any configuration. Since Mockup 5.6.11 the pattern
+// registers its own default component only if nothing is registered under
+// that key yet, so our registration wins regardless of the initialization
+// order.
+//
+// To scope the override instead, register under a custom key (e.g.
+// ``blicca.SelectedItem``) and activate it via the pattern option
+// ``componentRegistryKeys.selectedItem`` — e.g. globally via
+// ``plone.patternoptions`` (see profiles/default/registry/patternoptions.xml).
+import BliccaSelectedItem from "./contentbrowser/SelectedItem.svelte";
+
+plone_registry.registerComponent({
+    name: "pat-contentbrowser.SelectedItem",
+    component: BliccaSelectedItem,
+});
 
 // ---------------------------------------------------------------------------
 // The registry is usually already initialized by the Plone bundle — in that
