@@ -314,6 +314,15 @@ component.
 - Experiment with bundle ordering via the `depends` field.
 - Add a second component registry key and switch components per field via
   widget-level `data-pat-contentbrowser`.
+- **Customer case, folder contents row actions:** open Edit in a modal
+  and add an image cropping action, also in a modal. Needs the blacklist
+  recipe for `structure` plus a prototype patch of Mockup's
+  `ActionMenuView`, and the select2 git fork allowed in
+  `pnpm-workspace.yaml`. Worked solution in the docs chapter "Stretch
+  goal: folder contents row actions" and on the branch
+  `stretch-folder-contents`. Teaching point: the `menuOptions` option
+  looks like the answer, but it replaces the per-row generator and breaks
+  the Open/Edit URLs.
 
 ## Trainer notes
 

@@ -99,5 +99,6 @@ pattern-options
 own-pattern
 replace-pattern
 svelte-override
+stretch-folder-contents
 production
 ```
