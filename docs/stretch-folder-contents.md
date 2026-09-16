@@ -68,6 +68,12 @@ import $ from "jquery";
 import mockupParser from "@patternslib/patternslib/src/core/mockup-parser";
 import Structure from "@plone/mockup/src/pat/structure/structure";
 import ActionMenuView from "@plone/mockup/src/pat/structure/js/views/actionmenu";
+import utils from "@plone/mockup/src/core/utils";
+
+// Mockup resolves menu icons while rendering the row, without awaiting the
+// first fetch. Warm the icon cache for our new icon, so that the first row
+// already shows it instead of the title text.
+utils.resolveIcon("crop");
 
 const original_initialize = ActionMenuView.prototype.initialize;
 ActionMenuView.prototype.initialize = function (options) {
@@ -78,7 +84,7 @@ ActionMenuView.prototype.initialize = function (options) {
     const item = this.model.attributes;
 
     // 1. Open the edit form in a modal.
-    this.menuOptions.editItem.modal = true;
+    this.menuOptions.editItem.css = "pat-plone-modal";
 
     // 2. Add the cropping editor for images, also in a modal.
     if (item.portal_type === "Image") {
@@ -87,8 +93,8 @@ ActionMenuView.prototype.initialize = function (options) {
             title: "Crop image",
             category: "button",
             icon: "crop",
-            css: "",
-            modal: true,
+            css: "pat-plone-modal",
+            modal: false,
         };
     }
 
@@ -120,8 +126,14 @@ Import it in {file}`resources/overrides.js`, next to the `markspeciallinks` repl
 
 Each menu entry has the same shape: `url`, `title`, `category`, `icon`, `css`, and `modal`.
 The category `button` renders the entry next to Open and Edit, `dropdown` puts it into the gear menu.
-With `modal: true`, the view adds the `pat-plone-modal` class, and the link opens in a modal.
+The `css` classes end up on the link, so `pat-plone-modal` opens it in a modal.
 Entries with a `method` call a method of `src/pat/structure/js/actions.js`, such as `cutClicked` or `moveTopClicked`.
+
+```{note}
+The `modal: true` flag looks like the official way, but it has no effect in Mockup 5.6.
+The view appends the modal class after it has built the class list of the entry.
+Set the `css` class yourself, as the comment in the view suggests.
+```
 
 ## The pnpm caveat
 
@@ -141,6 +153,7 @@ The unpatched fork only differs in how already selected items are highlighted in
 
 Open the folder contents of a folder with an image.
 Edit opens in a modal for every item, and the image row has a crop button that opens the cropping editor in a modal.
+Cut an item with the gear menu: the folder rows now offer Paste, so the re-bound click handlers work.
 
 ```{note}
 The cropping action needs `plone.app.imagecropping` installed in your project.
