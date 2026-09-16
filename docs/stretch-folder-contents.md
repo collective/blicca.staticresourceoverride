@@ -149,11 +149,96 @@ Then run `pnpm install` and `pnpm run build` again.
 Mockup's postinstall script tries to patch select2, and doesn't find it in the pnpm store.
 The unpatched fork only differs in how already selected items are highlighted in the related items widget, which the folder contents don't use.
 
+## A lighter alternative: a pattern on the action menu
+
+The prototype patch changes the generated menu itself.
+If all you need is to decorate the rendered menu, add a class here, add a link there, a small pattern as in {ref}`blicca-own-pattern-label` does the job.
+No blacklist, no copy of the structure app, no change to the pnpm configuration.
+
+The hook is at the end of the `render()` method of the `ActionMenuView`, in {file}`src/pat/structure/js/views/actionmenu.js`:
+
+```js
+registry.scan(this.$el);
+return this.el;
+```
+
+Mockup scans every rendered row menu with the registry, so that the tooltips and modals on the buttons initialize.
+The registry is shared with our add-on, so a pattern of ours with a matching trigger runs for every row, and again whenever the rows re-render on paging, sorting, or a folder change.
+
+Two details of the row view, {file}`src/pat/structure/js/views/tablerow.js`, matter:
+
+```js
+this.el.model = this.model;
+...
+const menuview = new ActionMenuView({ app: this.app, model: this.model });
+$(".actionmenu-container", this.$el).append(await menuview.render());
+```
+
+The row keeps the Backbone model of the item on its DOM element, so the pattern can read `portal_type` and `getURL` from there.
+And the menu is scanned before it is appended to the row.
+At that moment the menu has no ancestors: a trigger like `.pat-structure .actionmenu` would not match, and `closest("tr")` would find nothing.
+
+Create {file}`resources/folder-contents-actions/actions.js`:
+
+```js
+import { BasePattern } from "@patternslib/patternslib/src/core/basepattern";
+import registry from "@patternslib/patternslib/src/core/registry";
+import utils from "@plone/mockup/src/core/utils";
+
+class Pattern extends BasePattern {
+    static name = "blicca-folder-contents-actions";
+    // The menu is scanned while it is still detached from the table, so the
+    // trigger must match the menu element itself, not a descendant of
+    // ".pat-structure".
+    static trigger = ".btn-group.actionmenu";
+
+    async init() {
+        // Wait a tick, until the menu is appended to its row.
+        await new Promise((resolve) => setTimeout(resolve));
+        const row = this.el.closest(".pat-structure tr");
+        // pat-structure stores the Backbone model of the item on its row.
+        const item = row?.model?.attributes;
+        if (!item) {
+            return;
+        }
+
+        // 1. Open the edit form in a modal.
+        const edit = this.el.querySelector("a.editItem");
+        if (edit) {
+            edit.classList.add("pat-plone-modal");
+            registry.scan(edit);
+        }
+
+        // 2. Add the cropping editor for images, also in a modal.
+        if (item.portal_type === "Image" && edit) {
+            const crop = document.createElement("a");
+            crop.className = "btn btn-sm action cropItem pat-plone-modal";
+            crop.href = `${item.getURL}/@@croppingeditor`;
+            crop.title = "Crop image";
+            crop.setAttribute("aria-label", "Crop image");
+            crop.innerHTML = await utils.resolveIcon("crop");
+            edit.after(crop);
+            registry.scan(crop);
+        }
+    }
+}
+
+registry.register(Pattern);
+export default Pattern;
+```
+
+Import it in {file}`resources/overrides.js` instead of the structure replacement, and rebuild.
+`registry.scan(link)` initializes the modal pattern on the changed link, and `utils.resolveIcon()` fetches an icon from Plone's icon resolver by its registered name.
+
+Use one variant or the other, not both: with both active, the image row gets two crop buttons.
+The solution branches are `stretch-folder-contents` for the prototype patch, and `stretch-folder-contents-pattern` for this variant.
+
 ## Checkpoint
 
 Open the folder contents of a folder with an image.
 Edit opens in a modal for every item, and the image row has a crop button that opens the cropping editor in a modal.
-Cut an item with the gear menu: the folder rows now offer Paste, so the re-bound click handlers work.
+Change into a subfolder and back: the rows re-render, and your changes are there again.
+With the prototype patch, also cut an item with the gear menu: the folder rows now offer Paste, so the re-bound click handlers work.
 
 ```{note}
 The cropping action needs `plone.app.imagecropping` installed in your project.

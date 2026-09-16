@@ -318,11 +318,15 @@ component.
   and add an image cropping action, also in a modal. Needs the blacklist
   recipe for `structure` plus a prototype patch of Mockup's
   `ActionMenuView`, and the select2 git fork allowed in
-  `pnpm-workspace.yaml`. Worked solution in the docs chapter "Stretch
-  goal: folder contents row actions" and on the branch
-  `stretch-folder-contents`. Teaching point: the `menuOptions` option
-  looks like the answer, but it replaces the per-row generator and breaks
-  the Open/Edit URLs.
+  `pnpm-workspace.yaml`. Lighter alternative for the same result: a small
+  pattern with the trigger `.btn-group.actionmenu`, because `pat-structure`
+  scans every rendered row menu with the registry. Worked solutions in the
+  docs chapter "Stretch goal: folder contents row actions" and on the
+  branches `stretch-folder-contents` (prototype patch) and
+  `stretch-folder-contents-pattern` (pattern). Teaching points: the
+  `menuOptions` option looks like the answer, but it replaces the per-row
+  generator and breaks the Open/Edit URLs; the menu is scanned while still
+  detached, so the pattern trigger must match the menu element itself.
 
 ## Trainer notes
 
