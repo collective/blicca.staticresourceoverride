@@ -5,23 +5,22 @@
 #   directory, see https://github.com/webpack/webpack/issues/5087
 # - allowBuilds: pnpm >= 10 blocks dependency build scripts by default;
 #   allow the ones we actually need. @plone/mockup's postinstall only
-#   patches select2, which we remove anyway (see overrides) — so: false.
+#   patches select2, which the stretch goal needs — so: true.
 # - overrides: Patternslib and Mockup pull in "slick-carousel", "slides"
-#   and "select2" as git subdependencies, which pnpm blocks
-#   (blockExoticSubdeps). Like mockup we simply remove them — they are only
-#   needed by patterns this add-on does not import.
+#   as git subdependencies, which pnpm blocks (blockExoticSubdeps). Like
+#   mockup we simply remove them. The stretch goal (pat-structure) needs
+#   Mockup's select2 fork, so exotic subdependencies are allowed here.
 
 shamefullyHoist: true
 
 overrides:
     "slick-carousel": "-"
     "slides": "-"
-    "select2": "-"
 
 allowBuilds:
     "@parcel/watcher": true
     "@patternslib/dev": true
-    "@plone/mockup": false
+    "@plone/mockup": true
     unrs-resolver: true
     yarn: false
 
@@ -30,3 +29,7 @@ allowBuilds:
 # install stays reproducible; drop the entry once the release has aged.
 minimumReleaseAgeExclude:
     - "@plone/mockup@5.6.11"
+
+# The stretch goal (pat-structure) needs Mockup's select2 git fork, a
+# subdependency, which pnpm blocks by default.
+blockExoticSubdeps: false

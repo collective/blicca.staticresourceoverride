@@ -29,6 +29,10 @@ import "./pat-blicca/blicca";
 // the same trigger.
 import "./markspeciallinks/markspeciallinks";
 
+// Stretch goal — customize the folder contents row actions (see the docs
+// chapter "Stretch goal: folder contents row actions").
+import "./structure/structure";
+
 // ---------------------------------------------------------------------------
 // Step 4 — Override a Svelte component.
 //

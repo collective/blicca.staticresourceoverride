@@ -13,4 +13,4 @@
  */
 window.__patternslib_patterns_blacklist = (
     window.__patternslib_patterns_blacklist || []
-).concat(["markspeciallinks"]);
+).concat(["markspeciallinks", "structure"]);
