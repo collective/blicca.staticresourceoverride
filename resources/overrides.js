@@ -28,6 +28,7 @@ import "./pat-blicca/blicca";
 // registered. Our replacement registers itself under its own name, but with
 // the same trigger.
 import "./markspeciallinks/markspeciallinks";
+import "./folder-contents-actions/actions";
 
 // ---------------------------------------------------------------------------
 // Step 4 — Override a Svelte component.
