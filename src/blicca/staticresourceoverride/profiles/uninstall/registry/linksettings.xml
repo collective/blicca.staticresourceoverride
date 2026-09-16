@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry>
+
+  <!-- Reset the link setting we enabled in the default profile.
+       (Site default is False; if you had enabled it yourself before
+       installing this add-on, re-enable it after uninstalling.) -->
+  <record name="plone.mark_special_links">
+    <value>False</value>
+  </record>
+
+</registry>

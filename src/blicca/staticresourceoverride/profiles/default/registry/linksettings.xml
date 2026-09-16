@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry>
+
+  <!-- The pat-markspeciallinks trigger class on the <body> is only
+       rendered when one of Plone's link settings is enabled (see
+       plone.app.layout, globals/layout.py: body_class). On a fresh site
+       both are off — without this record neither the original pattern nor
+       our replacement (step 3) would ever run, and the step 1 demo in
+       patternoptions.xml would have no visible effect. -->
+  <record name="plone.mark_special_links">
+    <value>True</value>
+  </record>
+
+</registry>
