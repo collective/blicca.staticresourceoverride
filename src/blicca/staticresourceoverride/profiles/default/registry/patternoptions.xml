@@ -17,6 +17,13 @@
       <!-- Step 1 demo: make external links open in a new window — purely
            declarative, no JavaScript involved. -->
       <element key="markspeciallinks">{"external_links_open_new_window": "true"}</element>
+      <!-- Step 4 (scoping exercise): activate a SelectedItem component that
+           is registered under a custom key. The pat-contentbrowser looks up
+           componentRegistryKeys.selectedItem before falling back to the
+           default key. Not needed for the default-key override in
+           resources/overrides.js.
+      <element key="contentbrowser">{"componentRegistryKeys": {"selectedItem": "blicca.SelectedItem"}}</element>
+      -->
     </value>
   </record>
 
