@@ -24,10 +24,8 @@ Racing the host is not a strategy.
 Patternslib provides an official switch instead: the pattern blacklist.
 
 ```{note}
-Patternslib 9.11, shipped with Mockup 5.6.12 and later, adds a second switch: `registry.register(Pattern, Pattern.name, { replace: true })` replaces a registration under the same name, and `Base.extend({ replace: true, ... })` does the same for old-style patterns.
-Together with the registry waiting for the module federation remotes, the replacement is in place for the initial scan, and the original's options work unchanged, because the name stays the same.
-The blacklist still wins over a replacement.
-This chapter keeps the blacklist recipe: it works on every Mockup 5 bundle, and it shows how registration, names, and triggers play together.
+Patternslib 9.11, shipped with Mockup 5.6.12 and later, adds a second switch, the `replace` option.
+See {ref}`blicca-replace-option-label` at the end of this chapter.
 ```
 
 ## The blacklist preload
@@ -104,6 +102,46 @@ Note the three tricks:
 - We register under the name `blicca-markspeciallinks`, with the original trigger `.pat-markspeciallinks`.
 - The Mockup parser reads options based on the pattern name, and our name differs.
   Therefore, `init()` fetches the original's options itself with `mockupParser.getOptions()`, including the inheritance from the `<body>`.
+
+(blicca-replace-option-label)=
+
+## The `replace` option
+
+Since Patternslib 9.11, shipped with Mockup 5.6.12 and later, the registry can replace a registration:
+
+```js
+import $ from "jquery";
+import registry from "@patternslib/patternslib/src/core/registry";
+import MarkSpecialLinks from "@plone/mockup/src/pat/markspeciallinks/markspeciallinks";
+
+export default MarkSpecialLinks.extend({
+    // Same name, same trigger, and the options keep working.
+    name: "markspeciallinks",
+    trigger: ".pat-markspeciallinks",
+    replace: true,
+
+    async init() {
+        this.protocol_icon_map = {
+            ...this.protocol_icon_map,
+            https: "box-arrow-up-right",
+            http: "box-arrow-up-right",
+        };
+        return this.constructor.__super__.init.call(this);
+    },
+});
+```
+
+For class-based patterns, pass the option to the registry: `registry.register(Pattern, Pattern.name, { replace: true })`.
+
+Compared with the blacklist recipe, two of the three building blocks disappear.
+There is no preload bundle, and no options bridge, because the pattern keeps its name and the Mockup parser reads `data-pat-markspeciallinks` as before.
+It works because the registry now waits for the module federation remotes before its initial scan, see {ref}`blicca-own-pattern-label`.
+The replacement is in place for the first scan, no matter whether the Plone bundle or your add-on registered first.
+If a replacement arrives after the registry was initialized, the registry logs a warning: elements that were already initialized keep the previous pattern, only new elements get the replacement.
+
+The blacklist still wins over a replacement, so both switches can coexist.
+This chapter keeps the blacklist recipe as the main path, because it works on every Mockup 5 bundle and because it makes registration, names, and triggers visible.
+Once your site runs Mockup 5.6.12 or later, the `replace` option is the shorter way.
 
 ## Exercise
 

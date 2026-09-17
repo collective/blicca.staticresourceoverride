@@ -242,6 +242,12 @@ Bootstrap Icons), or additionally set `rel="noopener noreferrer"`.
 - The blacklist blocks _any_ registration under that name — including
   yours. Hence the own name + original trigger combo.
 - The preload bundle needs no build at all — bundles are just files.
+- Since Patternslib 9.11 / Mockup 5.6.12 there is `replace: true` (pattern
+  property, or option of `registry.register`): same name, no preload
+  bundle, no options bridge, because the registry waits for the module
+  federation remotes before its initial scan. Show it as the shorter way
+  once everyone has the blacklist version running; the blacklist still
+  wins over a replacement. Code is in the docs chapter.
 
 **Checkpoint:** external links show the new icon; the console shows the
 original pattern being skipped.

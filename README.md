@@ -92,6 +92,15 @@ Three building blocks:
 Visible result: external links get the icon `box-arrow-up-right` instead of
 `link-45deg`.
 
+Since Patternslib 9.11 (Mockup 5.6.12 and later) there is a shorter way:
+`replace: true` as pattern property (or
+`registry.register(Pattern, name, { replace: true })`) replaces the
+registration under the **same name**, so the preload bundle and the options
+bridge are not needed. The registry waits for the module federation remotes
+before its initial scan, so the replacement is in place from the start. The
+blacklist still wins over a replacement. This add-on keeps the blacklist
+recipe because it works on every Mockup 5 bundle.
+
 ### 4. Override a Svelte component (demo: content browser `SelectedItem`)
 
 The `pat-contentbrowser` looks up its `SelectedItem` component in the
