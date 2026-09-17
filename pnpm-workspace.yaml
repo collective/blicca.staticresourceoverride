@@ -28,7 +28,9 @@ allowBuilds:
 # (supply-chain protection). Exclude the freshly released Mockup so the
 # install stays reproducible; drop the entry once the release has aged.
 minimumReleaseAgeExclude:
-    - "@plone/mockup@5.6.11"
+    - "@plone/mockup@5.6.14"
+    - "@patternslib/patternslib@9.11.0"
+    - "@patternslib/dev@4.2.0"
 
 # The stretch goal (pat-structure) needs Mockup's select2 git fork, a
 # subdependency, which pnpm blocks by default.

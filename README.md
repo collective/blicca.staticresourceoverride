@@ -194,7 +194,7 @@ question _Use Volto as frontend?_ with **No** to get a Blicca project.
 
 In a Cookieplone project, add the package as a source checkout to
 `backend/mx.ini`, pin `plone.staticresources` to a release with Mockup
-5.6.11 or later, add `"blicca.staticresourceoverride"` to the
+5.6.14 or later, add `"blicca.staticresourceoverride"` to the
 `dependencies` in `backend/pyproject.toml`, and re-run `make install`
 (mxdev clones it into `backend/sources/` and registers it as an editable
 `tool.uv.sources` entry):
@@ -203,7 +203,7 @@ In a Cookieplone project, add the package as a source checkout to
 [settings]
 main-package = -e .[test]
 version-overrides =
-    plone.staticresources==3.0.7
+    plone.staticresources==3.0.9
 
 [blicca.staticresourceoverride]
 url = https://github.com/collective/blicca.staticresourceoverride.git

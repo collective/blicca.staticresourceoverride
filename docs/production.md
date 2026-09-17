@@ -24,7 +24,7 @@ On every Plone upgrade, align the versions, and rebuild the bundle.
 Check the browser console for module federation warnings.
 
 Some techniques also need a minimum Mockup version in the Plone bundle.
-The shared Svelte runtime needs Mockup 5.6.9, and the override under the default component key needs Mockup 5.6.11.
+The shared Svelte runtime needs Mockup 5.6.9, the override under the default component key needs Mockup 5.6.11, and this add-on is built against Mockup 5.6.14 with Patternslib 9.11.
 
 ## Clean uninstall
 
