@@ -1,0 +1,26 @@
+name: Lint
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+
+jobs:
+    prettier:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+
+            - name: Enable pnpm via corepack
+              run: corepack enable
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile --ignore-scripts
+
+            - name: Check formatting
+              run: pnpm run lint
