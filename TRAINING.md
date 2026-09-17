@@ -304,6 +304,19 @@ component.
 - The pitfalls list in the [README](README.md#known-pitfalls).
 - Where to go next: Patternslib docs, Mockup source as a pattern cookbook,
   `plone.staticresources` for how the core bundle is built.
+- **Outlook, scaffolding your own add-on:** Cookieplone projects create
+  add-ons with `make add …`, which runs `plonecli add` with the
+  [bobtemplates.plone](https://github.com/plone/bobtemplates.plone)
+  subtemplates. There is already a `mockup_pattern` subtemplate with the
+  same skeleton as this repository (BasePattern class, module federation
+  remote, `bundles.xml`, `static/bundles`), but as of 8.0.0 it is on the
+  Mockup 5.0 stack: yarn, `@patternslib/dev <4`, open version ranges,
+  no Svelte shares, no `depends="plone"`. We plan to update it to the
+  setup of this training (pnpm with the caveats, exact pins, Svelte and
+  registry shares) and to add an override subtemplate covering pattern
+  options, the blacklist replacement and the Svelte component override.
+  Until then: use this repository as the template, and don't point
+  participants to the current subtemplate.
 
 ## Stretch goals (for fast participants)
 
