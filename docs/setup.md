@@ -56,13 +56,13 @@ Your site now runs at `http://localhost:8080/Plone` with the login `admin` and p
 
 The generated project keeps the Plone backend in the {file}`backend` directory, with {file}`mx.ini` and {file}`pyproject.toml`.
 Cookieplone projects manage source checkouts with [mxdev](https://github.com/mxstack/mxdev).
-Add the training add-on to {file}`backend/mx.ini`, and pin `plone.staticresources` to a release with Mockup 5.6.11 or later in the same file:
+Add the training add-on to {file}`backend/mx.ini`, and pin `plone.staticresources` to a release with Mockup 5.6.14 or later in the same file:
 
 ```ini
 [settings]
 main-package = -e .[test]
 version-overrides =
-    plone.staticresources==3.0.7
+    plone.staticresources==3.0.9
 
 [blicca.staticresourceoverride]
 url = https://github.com/collective/blicca.staticresourceoverride.git
@@ -93,9 +93,9 @@ mxdev clones the repository into {file}`backend/sources/blicca.staticresourceove
 uv then installs everything.
 
 ```{note}
-The `version-overrides` entry is what gives you Mockup 5.6.11.
+The `version-overrides` entry is what gives you Mockup 5.6.14, the version this add-on is built against.
 Plone 6.2.2 ships `plone.staticresources` 3.0.6 with Mockup 5.6.10, which is enough for the first three chapters.
-{ref}`blicca-svelte-override-label` needs the default component key from Mockup 5.6.11.
+{ref}`blicca-svelte-override-label` needs the default component key from Mockup 5.6.11, and the stretch goal is written for the row scanning of Mockup 5.6.14.
 ```
 
 ## Build the JavaScript

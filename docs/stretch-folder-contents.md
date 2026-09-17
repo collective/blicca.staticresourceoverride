@@ -155,28 +155,31 @@ The prototype patch changes the generated menu itself.
 If all you need is to decorate the rendered menu, add a class here, add a link there, a small pattern as in {ref}`blicca-own-pattern-label` does the job.
 No blacklist, no copy of the structure app, no change to the pnpm configuration.
 
-The hook is at the end of the `render()` method of the `ActionMenuView`, in {file}`src/pat/structure/js/views/actionmenu.js`:
-
-```js
-registry.scan(this.$el);
-return this.el;
-```
-
-Mockup scans every rendered row menu with the registry, so that the tooltips and modals on the buttons initialize.
-The registry is shared with our add-on, so a pattern of ours with a matching trigger runs for every row, and again whenever the rows re-render on paging, sorting, or a folder change.
-
-Two details of the row view, {file}`src/pat/structure/js/views/tablerow.js`, matter:
+The hook is the registry scan that Mockup runs on every rendered row, so that the tooltips and modals on the buttons initialize.
+Since Mockup 5.6.14, the row view, {file}`src/pat/structure/js/views/tablerow.js`, scans the row once it is attached to the document, and the table view scans all newly inserted rows:
 
 ```js
 this.el.model = this.model;
-...
+
 const menuview = new ActionMenuView({ app: this.app, model: this.model });
 $(".actionmenu-container", this.$el).append(await menuview.render());
+
+// Patterns inherit configuration from ancestors, so initialize only
+// after attachment. TableView scans newly inserted rows; rows rendered
+// again after context-info updates are already in the document.
+if (this.el.isConnected) {
+    registry.scan(this.$el);
+}
 ```
 
+The registry is shared with our add-on, so a pattern of ours with a matching trigger runs for every row, and again whenever the rows re-render on paging, sorting, or a folder change.
 The row keeps the Backbone model of the item on its DOM element, so the pattern can read `portal_type` and `getURL` from there.
-And the menu is scanned before it is appended to the row.
-At that moment the menu has no ancestors: a trigger like `.pat-structure .actionmenu` would not match, and `closest("tr")` would find nothing.
+
+```{note}
+Before Mockup 5.6.14, the `ActionMenuView` scanned the menu itself, at the end of its `render()` method, while the menu was still detached from the table.
+A trigger like `.pat-structure .actionmenu` did not match there, and `closest("tr")` found nothing.
+The pattern below works with both versions: its trigger matches the menu element itself, and it waits a tick before it looks for the row.
+```
 
 Create {file}`resources/folder-contents-actions/actions.js`:
 
@@ -187,13 +190,14 @@ import utils from "@plone/mockup/src/core/utils";
 
 class Pattern extends BasePattern {
     static name = "blicca-folder-contents-actions";
-    // The menu is scanned while it is still detached from the table, so the
-    // trigger must match the menu element itself, not a descendant of
-    // ".pat-structure".
+    // Match the menu element itself: before Mockup 5.6.14 the menu was
+    // scanned while still detached from the table, so a descendant selector
+    // of ".pat-structure" would not match there.
     static trigger = ".btn-group.actionmenu";
 
     async init() {
-        // Wait a tick, until the menu is appended to its row.
+        // Wait a tick, so that the menu is appended to its row on Mockup
+        // versions that scan the menu before attaching it.
         await new Promise((resolve) => setTimeout(resolve));
         const row = this.el.closest(".pat-structure tr");
         // pat-structure stores the Backbone model of the item on its row.

@@ -52,14 +52,17 @@ Three things matter here:
 ## The bundle around it
 
 The webpack setup comes from `@patternslib/dev`, and the module federation plugin turns the bundle into a remote.
-The entry point {file}`resources/index.js` only contains a dynamic import:
+The entry point {file}`resources/index.js` only contains a dynamic import, exported as default:
 
 ```js
-import("./overrides");
+export default import("./overrides");
 ```
 
 The dynamic import creates a split point.
 Webpack needs it to negotiate the shared dependencies with the Plone bundle at runtime, before our code runs.
+The default export matters, too.
+Since Mockup 5.6.13, the module federation helper of the Plone bundle awaits the exported promise of every remote, and the Patternslib registry, since 9.11, waits for that before its initial scan of the page.
+Your patterns and components are therefore registered before the first scan, no matter how fast the remote loads.
 
 The profile registers the built bundle in {file}`profiles/default/registry/bundles.xml`:
 

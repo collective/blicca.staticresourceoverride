@@ -64,14 +64,15 @@ documentation scaffold.
 **2. This add-on** — the backend lives in `backend/`. Cookieplone projects
 manage source checkouts with [mxdev](https://github.com/mxstack/mxdev).
 Add the add-on to `backend/mx.ini`, and pin `plone.staticresources` to a
-release with Mockup 5.6.11 or later in the same file (Plone 6.2.2 ships
-3.0.6 with Mockup 5.6.10, enough for blocks 1–3, but block 4 needs 5.6.11):
+release with Mockup 5.6.14 or later in the same file (Plone 6.2.2 ships
+3.0.6 with Mockup 5.6.10, enough for blocks 1–3; block 4 needs 5.6.11 and
+the stretch goal is written for 5.6.14):
 
 ```ini
 [settings]
 main-package = -e .[test]
 version-overrides =
-    plone.staticresources==3.0.7
+    plone.staticresources==3.0.9
 
 [blicca.staticresourceoverride]
 url = https://github.com/collective/blicca.staticresourceoverride.git
@@ -338,8 +339,9 @@ component.
   branches `stretch-folder-contents` (prototype patch) and
   `stretch-folder-contents-pattern` (pattern). Teaching points: the
   `menuOptions` option looks like the answer, but it replaces the per-row
-  generator and breaks the Open/Edit URLs; the menu is scanned while still
-  detached, so the pattern trigger must match the menu element itself.
+  generator and breaks the Open/Edit URLs; since Mockup 5.6.14 the row is
+  scanned after attachment (before, the menu was scanned detached), the
+  pattern trigger matches the menu element itself and works with both.
 
 ## Trainer notes
 

@@ -23,6 +23,13 @@ Racing the host is not a strategy.
 
 Patternslib provides an official switch instead: the pattern blacklist.
 
+```{note}
+Patternslib 9.11, shipped with Mockup 5.6.12 and later, adds a second switch: `registry.register(Pattern, Pattern.name, { replace: true })` replaces a registration under the same name, and `Base.extend({ replace: true, ... })` does the same for old-style patterns.
+Together with the registry waiting for the module federation remotes, the replacement is in place for the initial scan, and the original's options work unchanged, because the name stays the same.
+The blacklist still wins over a replacement.
+This chapter keeps the blacklist recipe: it works on every Mockup 5 bundle, and it shows how registration, names, and triggers play together.
+```
+
 ## The blacklist preload
 
 The file {file}`static/pattern-blacklist.js` is a tiny, unbuilt JavaScript file:
