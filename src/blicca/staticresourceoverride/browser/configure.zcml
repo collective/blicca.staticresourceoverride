@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="blicca.staticresourceoverride"
+    >
+
+  <!-- Stretch goal: show the code snippet in the default view. The
+       viewlet is bound to the behavior schema, which doubles as its marker
+       interface, so it renders only on content that has the behavior
+       enabled, and only in view mode (IViewView) — not in the edit form. -->
+  <browser:viewlet
+      name="blicca.staticresourceoverride.codesnippet"
+      for="..behaviors.codesnippet.ICodeSnippet"
+      view="plone.app.layout.globals.interfaces.IViewView"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+      class=".viewlets.CodeSnippetViewlet"
+      template="code_snippet.pt"
+      permission="zope2.View"
+      />
+
+</configure>

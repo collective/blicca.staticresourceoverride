@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Remove the code snippet behavior from the Page type again. Elements of a
+     lines property can be removed declaratively with remove="true", as long
+     as purge="false" keeps the other behaviors. -->
+<object name="Document" meta_type="Dexterity FTI">
+  <property name="behaviors" purge="false">
+    <element value="blicca.staticresourceoverride.codesnippet" remove="true" />
+  </property>
+</object>

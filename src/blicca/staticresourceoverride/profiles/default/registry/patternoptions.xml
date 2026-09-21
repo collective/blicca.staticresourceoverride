@@ -17,6 +17,12 @@
       <!-- Step 1 demo: make external links open in a new window — purely
            declarative, no JavaScript involved. -->
       <element key="markspeciallinks">{"external_links_open_new_window": "true"}</element>
+      <!-- Stretch goal: site-wide default for every code-editor instance
+           (the code snippet behavior, the Dexterity model editor, …). The
+           widget of the behavior sets language and line numbers itself —
+           element attributes win over the inherited body attribute, so
+           both levels combine. -->
+      <element key="code-editor">{"theme": "light"}</element>
       <!-- Step 4 (scoping exercise): activate a SelectedItem component that
            is registered under a custom key. The pat-contentbrowser looks up
            componentRegistryKeys.selectedItem before falling back to the

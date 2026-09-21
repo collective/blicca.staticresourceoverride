@@ -100,5 +100,6 @@ own-pattern
 replace-pattern
 svelte-override
 stretch-folder-contents
+stretch-code-snippet
 production
 ```

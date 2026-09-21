@@ -8,6 +8,11 @@
   <include package="plone.resource" file="meta.zcml" />
   <include package="plone.resource" />
 
+  <!-- Stretch goal: the code snippet behavior (pattern options per widget
+       via the autoform widget directive) and its viewlet. -->
+  <include package=".behaviors" />
+  <include package=".browser" />
+
   <!-- Static resources: available at
        ++plone++blicca.staticresourceoverride/...  -->
   <plone:static

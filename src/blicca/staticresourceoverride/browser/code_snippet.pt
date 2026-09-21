@@ -1,0 +1,12 @@
+<section class="code-snippet mb-4"
+         id="code-snippet"
+         i18n:domain="blicca.staticresourceoverride"
+>
+  <h2 class="h5" i18n:translate="">Code snippet</h2>
+  <!-- tal:content escapes the value; pat-syntax-highlight unescapes it again
+       before highlighting. The language class is the same as the widget's
+       option in behaviors/codesnippet.py. -->
+  <pre class="pat-syntax-highlight"
+       data-pat-syntax-highlight="theme: light"
+  ><code class="language-python" tal:content="view/code_snippet"></code></pre>
+</section>

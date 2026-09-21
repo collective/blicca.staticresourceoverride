@@ -20,6 +20,15 @@ import plone_registry from "@plone/registry";
 // AJAX injections) for the trigger selector.
 import "./pat-blicca/blicca";
 
+// Stretch goal — ship a Patternslib pattern that Mockup does not bundle.
+//
+// Patternslib has more patterns than the Plone bundle registers. Importing
+// one here registers it in the shared registry, so its trigger class works
+// site-wide. The code snippet viewlet (browser/code_snippet.pt)
+// renders a <pre class="pat-syntax-highlight">: a plain block until this
+// bundle is loaded, a highlighted one afterwards.
+import "@patternslib/patternslib/src/pat/syntax-highlight/syntax-highlight";
+
 // ---------------------------------------------------------------------------
 // Step 3 — Replace a core pattern entirely.
 //

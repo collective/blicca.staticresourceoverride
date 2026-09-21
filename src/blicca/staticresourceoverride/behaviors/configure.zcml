@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="blicca.staticresourceoverride"
+    >
+
+  <include package="plone.behavior" file="meta.zcml" />
+
+  <!-- Stretch goal: a behavior whose only field is rendered with the
+       code-editor pattern. The pattern and its options are set by the
+       autoform widget directive in the schema — see codesnippet.py.
+
+       No factory: the field is stored as a plain attribute, and the schema
+       is the marker interface that Dexterity applies to objects of a type
+       with this behavior (a separate marker needs a factory). The viewlet
+       in browser/configure.zcml is registered for it. -->
+  <plone:behavior
+      name="blicca.staticresourceoverride.codesnippet"
+      title="Code snippet (Blicca training)"
+      description="Adds a code snippet field that is edited with the code-editor pattern. Demonstrates pattern options set per widget."
+      provides=".codesnippet.ICodeSnippet"
+      marker=".codesnippet.ICodeSnippet"
+      />
+
+</configure>

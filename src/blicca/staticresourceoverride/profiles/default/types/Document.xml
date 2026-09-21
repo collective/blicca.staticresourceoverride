@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stretch goal: enable the code snippet behavior on the Page type.
+     purge="false" keeps the behaviors that are already enabled. -->
+<object name="Document" meta_type="Dexterity FTI">
+  <property name="behaviors" purge="false">
+    <element value="blicca.staticresourceoverride.codesnippet" />
+  </property>
+</object>

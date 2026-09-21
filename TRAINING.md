@@ -348,6 +348,22 @@ component.
   generator and breaks the Open/Edit URLs; since Mockup 5.6.14 the row is
   scanned after attachment (before, the menu was scanned detached), the
   pattern trigger matches the menu element itself and works with both.
+- **Code snippet behavior, pattern options per widget:** a behavior with a
+  `schema.Text` field whose autoform `directives.widget(...)` switches on
+  `pat-code-editor` — `pattern` / `pattern_options` on the pattern-aware
+  widgets of `plone.app.z3cform`, no widget and no pattern written. Enabled
+  on Page via `types/Document.xml` (`purge="false"`, uninstall with
+  `remove="true"`), editor theme site-wide via `plone.patternoptions` (the
+  parser merges both levels, the element wins). A viewlet shows the
+  snippet in the view as `pat-syntax-highlight` — a Patternslib pattern
+  the Plone bundle does not register; one import in `overrides.js` ships
+  it. Worked solution in the docs chapter "Stretch goal: a code snippet
+  behavior" and on the branch `stretch-code-snippet`. Teaching points: a
+  behavior without factory can't have a separate marker, the schema is
+  the marker (`marker=` set, so Dexterity applies it and the viewlet can
+  bind to it); `Object.keys(window.__patternslib_registry)` shows what the
+  host registers; a site-wide entry hits every instance of a pattern — the
+  Dexterity model editor turns light too.
 
 ## Trainer notes
 

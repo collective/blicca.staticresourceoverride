@@ -20,6 +20,11 @@ classifiers = [
 ]
 dependencies = [
     "Products.CMFPlone",
+    "plone.app.dexterity",
+    "plone.app.z3cform",
+    "plone.autoform",
+    "plone.behavior",
+    "plone.supermodel",
 ]
 
 [project.entry-points."z3c.autoinclude.plugin"]

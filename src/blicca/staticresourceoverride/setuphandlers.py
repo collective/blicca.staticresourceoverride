@@ -5,9 +5,10 @@ from zope.interface import implementer
 
 
 # Keys this add-on adds to the shared dict record plone.patternoptions:
-# "markspeciallinks" via the default profile (step 1), "contentbrowser" via
-# the scoping exercise of step 4 (commented example in patternoptions.xml).
-PATTERN_OPTION_KEYS = ("markspeciallinks", "contentbrowser")
+# "markspeciallinks" via the default profile (step 1), "code-editor" via
+# the code snippet stretch goal, "contentbrowser" via the scoping exercise
+# of step 4 (commented example in patternoptions.xml).
+PATTERN_OPTION_KEYS = ("markspeciallinks", "code-editor", "contentbrowser")
 
 
 @implementer(INonInstallable)
