@@ -1,0 +1,58 @@
+<section id="section-related"
+         tal:define="
+           related view/related_items;
+           plone_view nocall:context/@@plone;
+           normalizeString nocall:plone_view/normalizeString;
+           use_view_action python:context.portal_registry.get('types_use_view_action_in_listings', []);
+         "
+         tal:condition="related"
+         i18n:domain="plone"
+>
+
+  <header class="section-heading"
+          i18n:translate="section_related_heading"
+  >
+      Related content
+  </header>
+
+  <!-- Same look as the Blicca SelectedItem of the content browser
+       (resources/contentbrowser/SelectedItem.svelte): 3-column grid of
+       cards. Only Bootstrap utilities, no extra CSS needed. -->
+  <div class="row row-cols-1 row-cols-md-3 g-2 mb-3">
+    <div class="col"
+         tal:repeat="item related"
+    >
+      <div class="position-relative d-flex align-items-center gap-2 h-100 border border-primary rounded p-2 bg-primary-subtle contenttype-${python:normalizeString(item_type)}"
+           tal:define="
+             item_type item/portal_type;
+             item_wf_state item/review_state;
+             item_url item/getURL;
+             item_url python:(item_type in use_view_action) and item_url+'/view' or item_url;
+             item_has_image python:item.getIcon or item_type == 'Image';
+           "
+      >
+        <img class="rounded object-fit-cover flex-shrink-0"
+             alt="${item/Title}"
+             height="32"
+             src="${item/getURL}/@@images/image/icon"
+             width="32"
+             tal:condition="item_has_image"
+        />
+        <div class="flex-grow-1 text-break">
+          <a class="fw-bold stretched-link link-body-emphasis text-decoration-none"
+             href="${item_url}"
+          >${item/pretty_title_or_id}</a>
+          <span class="badge text-bg-primary">${item_type}</span>
+          <span class="badge text-bg-light state-${python:normalizeString(item_wf_state)}"
+                tal:condition="item_wf_state"
+          >${item_wf_state}</span>
+          <tal:desc tal:condition="item/Description">
+            <br />
+            <small class="text-body-secondary">${item/Description}</small>
+          </tal:desc>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

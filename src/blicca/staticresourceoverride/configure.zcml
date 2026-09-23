@@ -8,6 +8,9 @@
   <include package="plone.resource" file="meta.zcml" />
   <include package="plone.resource" />
 
+  <!-- Server-side template overrides (active via the browser layer) -->
+  <include package=".browser" />
+
   <!-- Static resources: available at
        ++plone++blicca.staticresourceoverride/...  -->
   <plone:static
@@ -31,6 +34,15 @@
       directory="profiles/uninstall"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.post_uninstall"
+      />
+
+  <!-- 1000 -> 1001: browser layer for the template overrides -->
+  <genericsetup:upgradeDepends
+      title="Register the browser layer"
+      profile="blicca.staticresourceoverride:default"
+      source="1000"
+      destination="1001"
+      import_steps="browserlayer"
       />
 
   <utility

@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    >
+
+  <!-- Related items viewlet: same name, view and manager as the original in
+       plone.app.layout (viewlets/configure.zcml) — only the layer and the
+       template differ. The more specific layer wins over the default. -->
+  <browser:viewlet
+      name="plone.relateditems"
+      view="plone.app.layout.globals.interfaces.IViewView"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+      class="plone.app.layout.viewlets.content.ContentRelatedItems"
+      template="templates/relateditems.pt"
+      layer="..interfaces.IBliccaStaticResourceOverrideLayer"
+      permission="zope2.View"
+      />
+
+</configure>
