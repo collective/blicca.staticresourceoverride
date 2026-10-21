@@ -3,7 +3,8 @@
 A 4-hour hands-on training on Blicca (formerly known as Classic UI), Plone's
 server-rendered frontend. Participants build their own
 `<name>.staticresourceoverride` add-on step by step, with this repository as
-the reference implementation and safety net.
+the reference implementation and safety net. The participant material is
+published at [training.plone.org](https://training.plone.org/blicca-customization-training/index.html).
 
 **Format:** half day (4 hours including one break)
 **Level:** beginner/intermediate
@@ -247,7 +248,8 @@ Bootstrap Icons), or additionally set `rel="noopener noreferrer"`.
   bundle, no options bridge, because the registry waits for the module
   federation remotes before its initial scan. Show it as the shorter way
   once everyone has the blacklist version running; the blacklist still
-  wins over a replacement. Code is in the docs chapter.
+  wins over a replacement. Code is in the chapter [Replacing a core
+  pattern](https://training.plone.org/blicca-customization-training/replace-pattern.html).
 
 **Checkpoint:** external links show the new icon; the console shows the
 original pattern being skipped.
@@ -341,7 +343,8 @@ component.
   `pnpm-workspace.yaml`. Lighter alternative for the same result: a small
   pattern with the trigger `.btn-group.actionmenu`, because `pat-structure`
   scans every rendered row menu with the registry. Worked solutions in the
-  docs chapter "Stretch goal: folder contents row actions" and on the
+  chapter [Stretch goal: folder contents row
+  actions](https://training.plone.org/blicca-customization-training/stretch-folder-contents.html) and on the
   branches `stretch-folder-contents` (prototype patch) and
   `stretch-folder-contents-pattern` (pattern). Teaching points: the
   `menuOptions` option looks like the answer, but it replaces the per-row
@@ -357,8 +360,7 @@ component.
   parser merges both levels, the element wins). A viewlet shows the
   snippet in the view as `pat-syntax-highlight` — a Patternslib pattern
   the Plone bundle does not register; one import in `overrides.js` ships
-  it. Worked solution in the docs chapter "Stretch goal: a code snippet
-  behavior" and on the branch `stretch-code-snippet`. Teaching points: a
+  it. Worked solution on the branch `stretch-code-snippet`. Teaching points: a
   behavior without factory can't have a separate marker, the schema is
   the marker (`marker=` set, so Dexterity applies it and the viewlet can
   bind to it); `Object.keys(window.__patternslib_registry)` shows what the

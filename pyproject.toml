@@ -22,6 +22,10 @@ dependencies = [
     "Products.CMFPlone",
 ]
 
+[project.urls]
+Homepage = "https://github.com/collective/blicca.staticresourceoverride"
+Documentation = "https://training.plone.org/blicca-customization-training/index.html"
+
 [project.entry-points."z3c.autoinclude.plugin"]
 target = "plone"
 
