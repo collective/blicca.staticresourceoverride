@@ -6,6 +6,8 @@ and Svelte components of Plone Blicca (formerly known as Classic UI).**
 Once installed in Plone, all customizations are active — without touching
 `plone.staticresources` or the Mockup package itself.
 
+> The full training material is published at
+> [training.plone.org](https://training.plone.org/blicca-customization-training/index.html).
 > Running this as a half-day training? See [TRAINING.md](TRAINING.md) for
 > the 4-hour schedule, the exercises and the `step-1` … `step-4` git tags
 > that mirror the training blocks.
